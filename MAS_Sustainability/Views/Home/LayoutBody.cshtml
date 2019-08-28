@@ -340,14 +340,14 @@
                             </a>
                         </li>
 
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a href="@Url.Action("MyTokens","Token")">
                                 <i class="fas fa-external-link-square-alt"></i>
                                 <p>My Tokens</p>
 
                             </a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a href="@Url.Action("Index","Token")">
                                 <i class="fas fa-list"></i>
@@ -357,16 +357,24 @@
                         </li>
 
 
-        @if(Model.LoggedUserType == ("Administrator")){
+                        @if (Model.LoggedUserType == ("Administrator"))
+                        {
+                            <li class="nav-item">
+                                <a href="@Url.Action("Index","UserManagement")">
+                                    <i class="fas fa-user"></i>
+                                    <p>User Manager</p>
+
+                                </a>
+                            </li>
+                        }
+
                         <li class="nav-item">
-                            <a href="@Url.Action("Index","UserManagement")">
-                                <i class="fas fa-user"></i>
-                                <p>User Manager</p>
+                            <a href="@Url.Action("Index","Report")">
+                                <i class="fas fa-list"></i>
+                                <p>Reports</p>
 
                             </a>
                         </li>
-        }
-
 
 
 
@@ -783,7 +791,7 @@
                                             <span class="sub-item">Level 1</span>
                                         </a>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                         </li>
@@ -792,7 +800,7 @@
 
 
 
-                        
+
                     </ul>
                 </div>
             </div>

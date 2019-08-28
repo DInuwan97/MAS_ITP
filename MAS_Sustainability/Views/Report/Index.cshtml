@@ -18,7 +18,7 @@
                     <div id="basic-datatables_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                
+
                             </div>
 
                         </div>
@@ -28,57 +28,54 @@
                                     <div class="card-header">
                                         <div class="d-flex align-items-center">
                                             <h4 class="card-title">Report List</h4>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                    <table id="basic-datatables" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="basic-datatables_info">
-                                        <thead>
+                                        <table id="basic-datatables" class="display table table-striped table-hover dataTable" role="grid" aria-describedby="basic-datatables_info">
+                                            <thead>
 
-                                            <tr role="row">
-                                                <th rowspan="1" colspan="1">Name</th>
-                                                <th rowspan="1" colspan="1">Location</th>
-                                                <th rowspan="1" colspan="1">Description</th>
-                                                <th rowspan="1" colspan="1">Category</th>
-                                                <th rowspan="1" colspan="1">Added Date</th>
-                                                <th rowspan="1" colspan="1">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-
-                                            <tr>
-                                                <th rowspan="1" colspan="1">Name</th>
-                                                <th rowspan="1" colspan="1">Location</th>
-                                                <th rowspan="1" colspan="1">Description</th>
-                                                <th rowspan="1" colspan="1">Category</th>
-                                                <th rowspan="1" colspan="1">Added Date</th>
-                                                <th rowspan="1" colspan="1">Actions</th>
-                                            </tr>
-
-                                        </tfoot>
-                                        <tbody>
-                                            @foreach (var item in Model.ReportList)
-                                            {
                                                 <tr role="row">
-                                                    <td class="sorting_1">@Html.DisplayFor(m => item.ProblemName)</td>
-                                                    <td>@Html.DisplayFor(m => item.Location)</td>
-                                                    <td>@Html.DisplayFor(m => item.Description)</td>
-                                                    <td>@Html.DisplayFor(m => item.Category)</td>
-                                                    <td>@Html.DisplayFor(m => item.AddedDate) </td>
-                                                    <td>
-                                                        <i class="btn btn-success btn-sm   " >@Html.ActionLink("View", "viewReport", "Report", new { Id = item.tokenID}, new { style = "color:white" })</i>
-
-
-
-
-                                                    </td>
+                                                    <th rowspan="1" colspan="1">Name</th>
+                                                    <th rowspan="1" colspan="1">Location</th>
+                                                    <th rowspan="1" colspan="1">Description</th>
+                                                    <th rowspan="1" colspan="1">Category</th>
+                                                    <th rowspan="1" colspan="1">Added Date</th>
+                                                    <th rowspan="1" colspan="1">Actions</th>
                                                 </tr>
-                                            }
+                                            </thead>
+                                            <tfoot>
+
+                                                <tr>
+                                                    <th rowspan="1" colspan="1">Name</th>
+                                                    <th rowspan="1" colspan="1">Location</th>
+                                                    <th rowspan="1" colspan="1">Description</th>
+                                                    <th rowspan="1" colspan="1">Category</th>
+                                                    <th rowspan="1" colspan="1">Added Date</th>
+                                                    <th rowspan="1" colspan="1">Actions</th>
+                                                </tr>
+
+                                            </tfoot>
+                                            <tbody>
+                                                @foreach (var item in Model.ReportList)
+                                                {
+                                                    <tr role="row">
+                                                        <td class="sorting_1">@Html.DisplayFor(m => item.ProblemName)</td>
+                                                        <td>@Html.DisplayFor(m => item.Location)</td>
+                                                        <td>@Html.DisplayFor(m => item.Description)</td>
+                                                        <td>@Html.DisplayFor(m => item.Category)</td>
+                                                        <td>@Html.DisplayFor(m => item.Category)</td>
+                                                        <td>@Html.DisplayFor(m => item.AddedDate) </td>
+                                                        <td>
+                                                            <i>@Html.ActionLink("View", "viewReport", "Report", new { Id = item.tokenID }, new { @class = "btn btn-success btn-sm " })</i>
+                                                        </td>
+                                                    </tr>
+                                                }
 
 
-                                        </tbody>
-                                    </table>
-                                        </div>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
