@@ -335,23 +335,24 @@ namespace MAS_Sustainability.Controllers
         {
             DB connection = new DB();
             DataTable feedbackIDDatatable = new DataTable();
+            DataTable getFeedbackIDdatable2 = new DataTable();
             using (MySqlConnection mySqlCon = connection.DBConnection())
             {
                 mySqlCon.Open();
                 if (Comment != null)
                 {
-                    String getFeedbackID = "Select feedbackid from feedback where tokenid =" + tokenID + "and userid = " + (int)UserID;
+                    String getFeedbackID = "Select feedbackid from feedback where tokenid = " + tokenID + " and userid = " + (int)UserID;
                     MySqlCommand commGetFeedbackID = new MySqlCommand(getFeedbackID, mySqlCon);
                     MySqlDataAdapter mySqlDa = new MySqlDataAdapter();
                     mySqlDa.SelectCommand = commGetFeedbackID;
                     mySqlDa.Fill(feedbackIDDatatable);
                     if (feedbackIDDatatable.Rows.Count == 0)
                     {
-                        String insertFeedback = "Insert into feedback(userid,tokenid,rating) values(" + UserID + "," + tokenID + ",0)";
+                        String insertFeedback = "Insert into feedback(userid,tokenid,rating) values( " + UserID + " , " + tokenID + " , 0)";
 
                         mySqlDa.SelectCommand = commGetFeedbackID;
-                        mySqlDa.Fill(feedbackIDDatatable);
-                        var feedbackID = Convert.ToInt32(feedbackIDDatatable.Rows[0][0]);
+                        mySqlDa.Fill(getFeedbackIDdatable2);
+                        var feedbackID = Convert.ToInt32(getFeedbackIDdatable2.Rows[0][0]);
                         String InsertComment = "Insert into comment(comment,feedbackid) values(" + Comment + "," + feedbackID + ")";
                         MySqlCommand commInsertComment = new MySqlCommand(InsertComment, mySqlCon);
                         commInsertComment.ExecuteNonQuery();
