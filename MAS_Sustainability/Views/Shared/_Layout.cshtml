@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewBag.title</title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="icon" href="https://via.placeholder.com/32x32" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="~/Content/assets/js/plugin/webfont/webfont.min.js"></script>
+
+    <link rel="stylesheet" href="~/Content/css/screen.css">
+    <link rel="stylesheet" href="~/Content/css/starrating.css">
+
+    <script>
+
+        $().ready(function () {
+            $("#signup_form").validate({
+                rules: {
+
+                    passwordsignin: {
+                        required: true,
+                        minlength: 5
+                    },
+                    confirmpassword: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#passwordsignin"
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+
+                    agree: "required"
+                },
+                messages: {
+
+                    passwordsignin: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 5 characters long"
+                    },
+                    confirmpassword: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 5 characters long",
+                        equalTo: "Please enter the same password as above"
+                    },
+                    email: "Please enter a valid email address"
+                }
+            });
+        });
+
+
+
+    </script>
+
+
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/atlantis.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/demo.css">
+    <link rel="stylesheet" href="~/Content/assets/css/fonts.min.css">
+
+
+</head>
+<body>
+
+
+
+    @RenderBody()
+
+
+
+</body>
+</html>

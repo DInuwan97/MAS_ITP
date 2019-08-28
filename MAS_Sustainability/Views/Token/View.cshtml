@@ -1,0 +1,697 @@
+﻿@using MAS_Sustainability.Models;
+@model MainModel
+
+@{
+    Layout = "~/Views/Home/LayoutBody.cshtml";
+}
+
+@{
+    ViewBag.Title = "View";
+}
+
+@{
+    var no_of_rows_side_bar = ViewBag.TokenVariable;
+}
+
+<div class="main-panel">
+    <div class="content content-full">
+        <div class="page-wrapper has-sidebar">
+            <div class="page-inner page-inner-fill">
+                <div class="conversations">
+                    <div class="message-header">
+                        <div class="message-title">
+                            <a class="btn btn-light" href="messages.html">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                            <div class="user ml-2">
+                                <div class="avatar avatar-offline">
+                                    <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                </div>
+                                <div class="info-user ml-2">
+
+
+                                    <span class="name">@Html.DisplayFor(model => model.UserName)</span>
+                                    <span class="last-active">@Html.DisplayFor(model => model.AddedDate)</span>
+
+
+                                </div>
+                            </div>
+                            <div class="ml-auto">
+
+                                <button class="btn btn-light page-sidebar-toggler d-xl-none">
+                                    <i class="fa fa-angle-double-left"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="conversations-body">
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+
+                                    <div class="card-header">
+
+
+                                        <h4 class="card-title">@Html.DisplayFor(model => model.ProblemName)</h4>
+
+
+
+                                        <p class="card-category">
+                                            <i class="fas fa-location-arrow" style="color:darkred"></i> @Html.DisplayFor(model => model.Location)</>
+                                        </p>
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="row image-gallery">
+
+                                            <a href="@Url.Content(Model.FirstImagePath)" class="col-6 col-md-3 mb-4">
+                                                <img src="@Url.Content(Model.FirstImagePath)" class="img-fluid">
+                                            </a>
+
+
+                                            <a href="@Url.Content(Model.SecondImagePath)" class="col-6 col-md-3 mb-4">
+                                                <img src="@Url.Content(Model.SecondImagePath)" class="img-fluid">
+                                            </a>
+
+
+                                            <div class="form-group">
+                                                <label for="comment">Problem in Brief</label>
+                                                <textarea class="form-control" id="comment" rows="5" name="Description" disabled style="overflow:hidden; color:black">
+                                                        @Html.DisplayFor(model => model.Description)
+										         </textarea>
+                                            </div>
+
+                                        </div>
+
+                                        @using (Html.BeginForm("TokenForward", "Token", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+
+
+                                            <input type="hidden" name="TokenAuditID" value=" @Html.DisplayFor(model => model.TokenAuditID)">
+
+
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend" style="margin-left:8px;">
+                                                    <label class="input-group-text" for="inputGroupSelect02">Reparation Department</label>
+                                                </div>
+                                                <select class="custom-select" name="ReparationDepartment" id="inputGroupSelect02" required="" style="margin-right:8px; height:40px; ">
+                                                    <option value="">Select Department</option>
+                                                    <option value="Factory Engineering">Factory Engineering</option>
+                                                    <option value="Production Engineering">Production Engineering</option>
+                                                    <option value="Autonomation">Autonomation</option>
+                                                    <option value="MOS">MOS</option>
+                                                    <option value="RM">RM</option>
+                                                    <option value="Quality">Quality</option>
+                                                    <option value="FG">FG</option>
+                                                    <option value="Technical">Technical</option>
+                                                    <option value="Cutting">Cutting</option>
+                                                    <option value="HR">HR</option>
+                                                    <option value="Operation">Operation</option>
+                                                    <option value="Production VSM 01">Production VSM 01</option>
+                                                    <option value="Production VSM 02">Production VSM 02</option>
+                                                    <option value="Production VSM 03">Production VSM 03</option>
+                                                    <option value="Production VSM 04">Production VSM 04</option>
+                                                    <option value="Pre-Sewing">Pre-Sewing</option>
+                                                    <option value="Emblishment">Emblishment</option>
+                                                    <option value="IE">IE</option>
+                                                </select>
+                                            </div>
+
+
+
+                                            <table class="table mt-3">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"><center>Carefull</center></th>
+                                                        <th scope="col"><center>Normal</center></th>
+                                                        <th scope="col"><center>Fine</center></th>
+                                                        <th scope="col"><center>Urgent</center></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><center><input type="checkbox" checked data-toggle="toggle" data-onstyle="warning" data-style="btn-round"></center></td>
+                                                        <td><center><input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round"></center></td>
+                                                        <td><center><input type="checkbox" checked data-toggle="toggle" data-onstyle="success" data-style="btn-round"></center></td>
+                                                        <td><center><input type="checkbox" checked data-toggle="toggle" data-onstyle="danger" data-style="btn-round"></center></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                            <center>
+                                                <input type="submit" class="btn btn-primary" value="FORWARD">
+                                            </center>
+
+                                        }
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="page-sidebar">
+                        <header class="sidebar-header d-xl-none">
+                            <a class="back">
+                                <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Back
+                            </a>
+                        </header>
+
+                        <div class="page-sidebar-section pb-3">
+                            <div class="page-navs bg-white mb-4">
+                                <div class="nav-scroller">
+                                    <div class="nav nav-tabs nav-line nav-color-secondary">
+                                        <a class="nav-link active show" data-toggle="tab" href="#tab1">
+                                            Contact Info
+                                        </a>
+                                        <a class="nav-link" data-toggle="tab" href="#tab2">Media</a>
+                                        <a class="nav-link" data-toggle="tab" href="#tab3">Action</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            @for (int i = 0; i < @no_of_rows_side_bar.no_of_rows_side_bar; i = i + 2)
+                            {
+                                if (@no_of_rows_side_bar.ArrTokenAuditID[i] != @no_of_rows_side_bar.TokenAuditID)
+                                //if()
+                                {
+
+                                    <div class="list-group list-group-file-item list-group-reflow list-group-flush list-group-divider mt-3">
+                                        <!-- .list-group-header -->
+                                        <!-- /.list-group-header -->
+                                        <!-- .list-group-item -->
+                                        <div class="list-group-item align-items-start">
+
+
+
+                                            <!--image-->
+
+                                            <div class="list-group-item-figure">
+                                                <img src="@Url.Content(Model.ArrFirstImagePath[i])" style="width:100px; height:70px;" class="img-fluid">
+                                            </div>
+
+
+                                            <!--stars and little description-->
+                                            <div class="list-group-item-body">
+                                                <div class="list-group-item-body">
+
+
+                                                    <i class="fas fa-star py-2 px-1 rate-popover" style="color:red" data-index="4" data-html="true"></i>
+                                                    <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" data-html="true"></i>
+                                                    <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" data-html="true"></i>
+                                                    <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" data-html="true"></i>
+                                                    <i class="fas fa-star py-2 px-1 rate-popover" data-index="4" data-html="true"></i>
+
+
+
+                                                    <p class="list-group-item-text" style="font-family:" Open Sans";"><a href="@Url.Action("View", "Token", new { @id = Html.DisplayFor(model => model.ArrTokenAuditID[i]) })"><strong>@Html.DisplayFor(model => model.ArrProblemName[i])</strong></a></p>
+                                                    <p class="list-group-item-text small">@Html.DisplayFor(model => model.ArrLocation[i])</p>
+
+                                                </div>
+                                            </div>
+
+
+                                            <!--end of stars and little description-->
+
+                                            <div class="list-group-item-figure">
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+            <div class="quick-sidebar">
+                <a href="#" class="close-quick-sidebar">
+                    <i class="flaticon-cross"></i>
+                </a>
+                <div class="quick-sidebar-wrapper">
+                    <ul class="nav nav-tabs nav-line nav-color-secondary" role="tablist">
+                        <li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="#messages" role="tab" aria-selected="true">Messages</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#tasks" role="tab" aria-selected="false">Tasks</a> </li>
+                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-selected="false">Settings</a> </li>
+                    </ul>
+                    <div class="tab-content mt-3">
+                        <div class="tab-chat tab-pane fade show active" id="messages" role="tabpanel">
+                            <div class="messages-contact">
+                                <div class="quick-wrapper">
+                                    <div class="quick-scroll scrollbar-outer">
+                                        <div class="quick-content contact-content">
+                                            <span class="category-title mt-0">Contacts</span>
+                                            <div class="avatar-group">
+                                                <div class="avatar">
+                                                    <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                                </div>
+                                                <div class="avatar">
+                                                    <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                                </div>
+                                                <div class="avatar">
+                                                    <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                                </div>
+                                                <div class="avatar">
+                                                    <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                                </div>
+                                                <div class="avatar">
+                                                    <span class="avatar-title rounded-circle border border-white">+</span>
+                                                </div>
+                                            </div>
+                                            <span class="category-title">Recent</span>
+                                            <div class="contact-list contact-list-recent">
+                                                <div class="user">
+                                                    <a href="#">
+                                                        <div class="avatar avatar-online">
+                                                            <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                                        </div>
+                                                        <div class="user-data">
+                                                            <span class="name">Jimmy Denis</span>
+                                                            <span class="message">How are you ?</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="user">
+                                                    <a href="#">
+                                                        <div class="avatar avatar-offline">
+                                                            <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                                        </div>
+                                                        <div class="user-data">
+                                                            <span class="name">Chad</span>
+                                                            <span class="message">Ok, Thanks !</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="user">
+                                                    <a href="#">
+                                                        <div class="avatar avatar-offline">
+                                                            <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                                        </div>
+                                                        <div class="user-data">
+                                                            <span class="name">John Doe</span>
+                                                            <span class="message">Ready for the meeting today with...</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <span class="category-title">Other Contacts</span>
+                                            <div class="contact-list">
+                                                <div class="user">
+                                                    <a href="#">
+                                                        <div class="avatar avatar-online">
+                                                            <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                                        </div>
+                                                        <div class="user-data2">
+                                                            <span class="name">Jimmy Denis</span>
+                                                            <span class="status">Online</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="user">
+                                                    <a href="#">
+                                                        <div class="avatar avatar-offline">
+                                                            <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                                        </div>
+                                                        <div class="user-data2">
+                                                            <span class="name">Chad</span>
+                                                            <span class="status">Active 2h ago</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="user">
+                                                    <a href="#">
+                                                        <div class="avatar avatar-away">
+                                                            <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                                        </div>
+                                                        <div class="user-data2">
+                                                            <span class="name">Talha</span>
+                                                            <span class="status">Away</span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="messages-wrapper">
+                                <div class="messages-title">
+                                    <div class="user">
+                                        <div class="avatar avatar-offline float-right ml-2">
+                                            <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                        </div>
+                                        <span class="name">Chad</span>
+                                        <span class="last-active">Active 2h ago</span>
+                                    </div>
+                                    <button class="return">
+                                        <i class="flaticon-left-arrow-3"></i>
+                                    </button>
+                                </div>
+                                <div class="messages-body messages-scroll scrollbar-outer">
+                                    <div class="message-content-wrapper">
+                                        <div class="message message-in">
+                                            <div class="avatar avatar-sm">
+                                                <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                            </div>
+                                            <div class="message-body">
+                                                <div class="message-content">
+                                                    <div class="name">Chad</div>
+                                                    <div class="content">Hello, Rian</div>
+                                                </div>
+                                                <div class="date">12.31</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-content-wrapper">
+                                        <div class="message message-out">
+                                            <div class="message-body">
+                                                <div class="message-content">
+                                                    <div class="content">
+                                                        Hello, Chad
+                                                    </div>
+                                                </div>
+                                                <div class="message-content">
+                                                    <div class="content">
+                                                        What's up?
+                                                    </div>
+                                                </div>
+                                                <div class="date">12.35</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-content-wrapper">
+                                        <div class="message message-in">
+                                            <div class="avatar avatar-sm">
+                                                <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                            </div>
+                                            <div class="message-body">
+                                                <div class="message-content">
+                                                    <div class="name">Chad</div>
+                                                    <div class="content">
+                                                        Thanks
+                                                    </div>
+                                                </div>
+                                                <div class="message-content">
+                                                    <div class="content">
+                                                        When is the deadline of the project we are working on ?
+                                                    </div>
+                                                </div>
+                                                <div class="date">13.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-content-wrapper">
+                                        <div class="message message-out">
+                                            <div class="message-body">
+                                                <div class="message-content">
+                                                    <div class="content">
+                                                        The deadline is about 2 months away
+                                                    </div>
+                                                </div>
+                                                <div class="date">13.10</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="message-content-wrapper">
+                                        <div class="message message-in">
+                                            <div class="avatar avatar-sm">
+                                                <img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle border border-white">
+                                            </div>
+                                            <div class="message-body">
+                                                <div class="message-content">
+                                                    <div class="name">Chad</div>
+                                                    <div class="content">
+                                                        Ok, Thanks !
+                                                    </div>
+                                                </div>
+                                                <div class="date">13.15</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="messages-form">
+                                    <div class="messages-form-control">
+                                        <input type="text" placeholder="Type here" class="form-control input-pill input-solid message-input">
+                                    </div>
+                                    <div class="messages-form-tool">
+                                        <a href="#" class="attachment">
+                                            <i class="flaticon-file"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tasks" role="tabpanel">
+                            <div class="quick-wrapper tasks-wrapper">
+                                <div class="tasks-scroll scrollbar-outer">
+                                    <div class="tasks-content">
+                                        <span class="category-title mt-0">Today</span>
+                                        <ul class="tasks-list">
+                                            <li>
+                                                <label class="custom-checkbox custom-control checkbox-secondary">
+                                                    <input type="checkbox" checked="" class="custom-control-input"><span class="custom-control-label">Planning new project structure</span>
+                                                    <span class="task-action">
+                                                        <a href="#" class="link text-danger">
+                                                            <i class="flaticon-interface-5"></i>
+                                                        </a>
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-checkbox custom-control checkbox-secondary">
+                                                    <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Create the main structure							</span>
+                                                    <span class="task-action">
+                                                        <a href="#" class="link text-danger">
+                                                            <i class="flaticon-interface-5"></i>
+                                                        </a>
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-checkbox custom-control checkbox-secondary">
+                                                    <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Add new Post</span>
+                                                    <span class="task-action">
+                                                        <a href="#" class="link text-danger">
+                                                            <i class="flaticon-interface-5"></i>
+                                                        </a>
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-checkbox custom-control checkbox-secondary">
+                                                    <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Finalise the design proposal</span>
+                                                    <span class="task-action">
+                                                        <a href="#" class="link text-danger">
+                                                            <i class="flaticon-interface-5"></i>
+                                                        </a>
+                                                    </span>
+                                                </label>
+                                            </li>
+                                        </ul>
+
+                                        <span class="category-title">Tomorrow</span>
+                                        <ul class="tasks-list">
+                                            <li>
+                                                <label class="custom-checkbox custom-control checkbox-secondary">
+                                                    <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Initialize the project							</span>
+                                                    <span class="task-action">
+                                                        <a href="#" class="link text-danger">
+                                                            <i class="flaticon-interface-5"></i>
+                                                        </a>
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-checkbox custom-control checkbox-secondary">
+                                                    <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Create the main structure							</span>
+                                                    <span class="task-action">
+                                                        <a href="#" class="link text-danger">
+                                                            <i class="flaticon-interface-5"></i>
+                                                        </a>
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-checkbox custom-control checkbox-secondary">
+                                                    <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Updates changes to GitHub							</span>
+                                                    <span class="task-action">
+                                                        <a href="#" class="link text-danger">
+                                                            <i class="flaticon-interface-5"></i>
+                                                        </a>
+                                                    </span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-checkbox custom-control checkbox-secondary">
+                                                    <input type="checkbox" class="custom-control-input"><span title="This task is too long to be displayed in a normal space!" class="custom-control-label">This task is too long to be displayed in a normal space!				</span>
+                                                    <span class="task-action">
+                                                        <a href="#" class="link text-danger">
+                                                            <i class="flaticon-interface-5"></i>
+                                                        </a>
+                                                    </span>
+                                                </label>
+                                            </li>
+                                        </ul>
+
+                                        <div class="mt-3">
+                                            <div class="btn btn-primary btn-rounded btn-sm">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-plus"></i>
+                                                </span>
+                                                Add Task
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="settings" role="tabpanel">
+                            <div class="quick-wrapper settings-wrapper">
+                                <div class="quick-scroll scrollbar-outer">
+                                    <div class="quick-content settings-content">
+
+                                        <span class="category-title mt-0">General Settings</span>
+                                        <ul class="settings-list">
+                                            <li>
+                                                <span class="item-label">Enable Notifications</span>
+                                                <div class="item-control">
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span class="item-label">Signin with social media</span>
+                                                <div class="item-control">
+                                                    <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span class="item-label">Backup storage</span>
+                                                <div class="item-control">
+                                                    <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span class="item-label">SMS Alert</span>
+                                                <div class="item-control">
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                        <span class="category-title mt-0">Notifications</span>
+                                        <ul class="settings-list">
+                                            <li>
+                                                <span class="item-label">Email Notifications</span>
+                                                <div class="item-control">
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span class="item-label">New Comments</span>
+                                                <div class="item-control">
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span class="item-label">Chat Messages</span>
+                                                <div class="item-control">
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span class="item-label">Project Updates</span>
+                                                <div class="item-control">
+                                                    <input type="checkbox" data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <span class="item-label">New Tasks</span>
+                                                <div class="item-control">
+                                                    <input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Custom template | don't include it in your project! -->
+
+
+            <script src="~/Content/assets/js/core/jquery.3.2.1.min.js"></script>
+            <script src="~/Content/assets/js/core/popper.min.js"></script>
+            <script src="~/Content/assets/js/core/bootstrap.min.js"></script>
+            <!-- jQuery UI -->
+            <script src="~/Content/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+            <script src="~/Content/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+            <!-- Bootstrap Toggle -->
+            <script src="~/Content/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+            <!-- jQuery Scrollbar -->
+            <script src="~/Content/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+            <!-- Datatables -->
+            <script src="~/Content/assets/js/plugin/datatables/datatables.min.js"></script>
+            <!-- Atlantis JS -->
+            <script src="~/Content/assets/js/atlantis.min.js"></script>
+            <!-- Atlantis DEMO methods, don't include it in your project! -->
+            <script src="~/Content/assets/js/setting-demo2.js"></script>
+
+            <script src="assets/js/plugin/jquery.magnific-popup/jquery.magnific-popup.min.js"></script>
+            <!-- Atlantis JS -->
+
+            <script>
+                // This will create a single gallery from all elements that have class "gallery-item"
+                $('.image-gallery').magnificPopup({
+                    delegate: 'a',
+                    type: 'image',
+                    removalDelay: 300,
+                    gallery: {
+                        enabled: true,
+                    },
+                    mainClass: 'mfp-with-zoom',
+                    zoom: {
+                        enabled: true,
+                        duration: 300,
+                        easing: 'ease-in-out',
+                        opener: function (openerElement) {
+                            return openerElement.is('img') ? openerElement : openerElement.find('img');
+                        }
+                    }
+                });
+            </script>
+
+
+
+

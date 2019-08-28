@@ -1,0 +1,645 @@
+/*     	Customable Layouts Colors     */
+
+%nav-background-color-style {
+	.nav-search{
+		.input-group {
+			border: 0;
+			background: rgba(0, 0, 0, 0.14)!important;
+			box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.07);
+			transition: all .4s;
+			.form-control {
+				color: $white-color !important;
+				&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+					opacity: 1;
+				}
+				&::-moz-placeholder { /* Firefox 19+ */
+					opacity: 1;
+				}
+				&:-ms-input-placeholder { /* IE 10+ */
+					opacity: 1;
+				}
+				&:-moz-placeholder { /* Firefox 18- */
+					opacity: 1;
+				}
+			}
+			.search-icon {
+				color: $white-color !important;
+			}
+			&.focus {
+				background: #fff !important;
+				.form-control {
+					color: inherit !important;
+					&::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+						color: #bfbfbf !important;
+					}
+					&::-moz-placeholder { /* Firefox 19+ */
+						color: #bfbfbf !important;
+					}
+					&:-ms-input-placeholder { /* IE 10+ */
+						color: #bfbfbf !important;
+					}
+					&:-moz-placeholder { /* Firefox 18- */
+						color: #bfbfbf !important;
+					}
+				}
+				.search-icon {
+					color: #bfbfbf !important;
+				}
+			}
+		}
+	}
+	.navbar-nav .nav-item {
+		.nav-link {
+			color: $white-color !important;
+			&:hover, &:focus {
+				background: rgba(31, 30, 30, 0.12) !important;
+			}
+		}
+		&.active {
+			.nav-link {
+				background: rgba(31, 30, 30, 0.12) !important;
+			}
+		}
+	}
+}
+
+body {
+	&[data-background-full] {
+		overflow: hidden;
+		.main-header {
+			background: transparent !important;
+			box-shadow: 0px 0px 5px rgba(18, 23, 39, 0.22) !important;
+			.navbar-header {
+				@extend %nav-background-color-style;
+			}
+		}
+		.logo-header {
+			.navbar-toggler {
+				.navbar-toggler-icon {
+					color: $white-color !important;
+				}
+			}
+			.more {
+				color: $white-color !important;
+			}
+		}
+		.sidebar {
+			background: transparent !important;
+			box-shadow: none !important;
+			.user {
+				border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+				.info { 
+					a > span {
+						color: #fff;
+						.user-level {
+							color: #eaeaea;
+						}
+						.caret {
+							border-top-color: #fff;
+						}
+					}
+				}
+			}
+			.nav {
+				> .nav-item {
+					a {
+						color: #eaeaea;
+						i, p, .caret {
+							color: #eaeaea;
+						}
+						&:hover, &:focus, &[data-toggle=collapse][aria-expanded=true] {
+							color: #fff !important;
+							i, p, .caret {
+								color: #fff !important;
+							}
+						}
+					}
+				}
+			}
+			&.sidebar-style-2 {
+				.nav {
+					.nav-item {
+						&.active {
+							> a {
+								background: rgba(255, 255, 255, 0.2) !important;
+								border: 1px solid rgba(255, 255, 255, 0.2) !important;
+								box-shadow: none !important;
+								p, span {
+									color: #eaeaea !important;
+								}
+							}
+						}
+						a {
+							border: 1px solid transparent;
+							&:hover, &:focus, &[data-toggle=collapse][aria-expanded=true] {
+								background: rgba(255, 255, 255, 0.15) !important;
+								border: 1px solid rgba(255, 255, 255, 0.15) !important;
+								p {
+									color: #fff !important;
+								}
+							}
+						}
+					}
+				}
+			}
+			.nav-section {
+				.text-section, .sidebar-mini-icon {
+					color: #eaeaea;
+				}
+			}
+			.nav-collapse {
+				li {
+					a {
+						.sub-item:before {
+							background: #eaeaea;
+						}
+					}
+				}
+			}
+		}
+		.main-panel {
+			> .content {
+				height: calc(100vh - 62px);
+				overflow-x: hidden !important;
+				.scroll-content {
+					overflow-x: hidden !important;
+				}
+				.scroll-x {
+					display: none !important;
+				}
+			}
+			.scroll-element {
+				opacity: 0;
+				transition: all .2s;
+			}
+			&:hover .scroll-element {
+				opacity: 1;
+			}
+		}
+		.page-inner:not(.page-inner-fill) {
+			padding: 25px 30px;
+			> div {
+				border-radius: 5px;
+				overflow: hidden;
+			}
+		}
+		.page-sidebar {
+			border-left: 1px solid rgba(255, 255, 255, 0.83) !important;
+		}
+		.scroll-element {
+			.scroll-bar {
+				background-color: #ffffff !important;
+				opacity: 0.6 !important;
+			}
+			&:hover {
+				.scroll-bar {
+					background-color: #ffffff !important;
+					opacity: 0.5 !important;
+				}
+			}
+		}
+		.footer {
+			background: transparent !important;
+			border-top: 1px solid rgba(255, 255, 255, 0.2);
+		}
+	}
+	@mixin data-background-full-style($color) {
+		background: $color !important;
+	}
+	&[data-background-full="image"] {
+		background-size: cover;
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+	}
+	&[data-background-full="dark"] {
+		@include data-background-full-style($dark-color);
+	}
+	&[data-background-full="dark2"] {
+		@include data-background-full-style($dark2-color);
+	}
+	&[data-background-full="blue"] {
+		@include data-background-full-style($primary-color);
+	}
+	&[data-background-full="blue2"] {
+		@include data-background-full-style($primary2-color);
+	}
+	&[data-background-full="purple"] {
+		@include data-background-full-style($secondary-color);
+	}
+	&[data-background-full="purple2"] {
+		@include data-background-full-style($secondary2-color);
+	}
+	&[data-background-full="light-blue"] {
+		@include data-background-full-style($info-color);
+	}
+	&[data-background-full="light-blue2"] {
+		@include data-background-full-style($info2-color);
+	}
+	&[data-background-full="green"] {
+		@include data-background-full-style($success-color);
+	}
+	&[data-background-full="green2"] {
+		@include data-background-full-style($success2-color);
+	}
+	&[data-background-full="orange"] {
+		@include data-background-full-style($warning-color);
+	}
+	&[data-background-full="orange2"] {
+		@include data-background-full-style($warning2-color);
+	}
+	&[data-background-full="red"] {
+		@include data-background-full-style($danger-color);
+	}
+	&[data-background-full="red2"] {
+		@include data-background-full-style($danger2-color);
+	}
+}
+
+@media screen and (max-width: 991px) {
+	body {
+		&[data-background-full] { 
+			.main-panel {
+				> .content {
+					.scroll-y {
+						display: none !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.main-header {
+	.navbar-header{
+		&[data-background-color]{
+			@extend %nav-background-color-style;
+		}
+		&[data-background-color="dark"], &[data-background-color="dark2"] {
+			.nav-search {
+				.input-group {
+					background: rgba(185, 185, 185, 0.18) !important;
+				}
+			}
+			.navbar-nav .nav-item {
+				.nav-link {
+					&:hover, &:focus {
+						background: rgba(185, 185, 185, 0.18) !important;
+					}
+				}
+				&.active {
+					.nav-link {
+						background: rgba(185, 185, 185, 0.18) !important;
+					}
+				}
+			}
+		}
+		&[data-background-color="white"], .navbar-header-transparent  {
+			.nav-search {
+				.input-group {
+					background: #eee;
+					.form-control {
+						color: #8d9498 !important;
+					}
+					.search-icon {
+						color: #8d9498 !important;
+					}
+				}
+			}
+			.navbar-nav .nav-item {
+				.nav-link {
+					color: #8d9498 !important;
+					&:hover, &:focus {
+						background: #eee !important;
+					}
+				}
+				&.active {
+					.nav-link {
+						background: #eee !important;
+					}
+				}
+			}
+		}
+	}
+}
+
+.btn-toggle {
+	color: #fff !important;
+}
+.logo-header{
+	&[data-background-color]{
+		.navbar-toggler {
+			.navbar-toggler-icon {
+				color: $white-color !important;
+			}
+		}
+		.more {
+			color: $white-color !important;
+		}
+	}
+	&[data-background-color="white"] {
+		.navbar-toggler .navbar-toggler-icon, .more, .btn-toggle {
+			color: #8d9498 !important;
+		}
+	}
+}
+
+@mixin main-header-color-style($color) {
+	background: $color !important;
+}
+
+@mixin logo-header-color-style($color) {
+	background: $color !important;
+}
+
+@mixin navbar-header-color-style($color) {
+	background: $color !important;
+}
+
+@mixin sidebar-color-style($color) {
+	background: $color !important;
+	.user {
+		border-color: rgba(181, 181, 181, 0.1) !important;
+		.info a > span {
+			color: #b9babf;
+			.user-level {
+				color: #8d9498;
+			}
+		}
+	}
+	.nav {
+		> .nav-item {
+			&.active {
+				> a {
+					p {
+						color: #b9babf !important;
+					}
+				}
+			}
+			a {
+				color: #b9babf !important;
+				&:hover, &:focus, &[data-toggle=collapse][aria-expanded=true] {
+					p {
+						color: #b9babf !important;
+					}
+				}
+			}
+		}
+	}
+	&.sidebar-style-2 {
+		.nav {
+			.nav-item {
+				&.active {
+					> a, > a:hover, > a:focus, > a[data-toggle=collapse][aria-expanded=true] {
+						background: #fff !important;
+						color: $color !important;
+						p, i, .caret {
+							color: $color !important;
+						}
+					}
+				}
+			}
+		}
+	}
+	.scrollbar-inner > .scroll-element {
+		.scroll-bar {
+			background-color: #f7f7f7;
+		}
+		&.scroll-draggable .scroll-bar, &:hover .scroll-bar {
+			background-color: #dcdbdb;
+		}
+	}
+}
+
+@mixin sidebar-color-style2($color) {
+	background: $color !important;
+	.user {
+		margin-top: 0px;
+		padding-top: 12.5px;
+		border-top: 1px solid;
+		border-color: rgba(255, 255, 255, 0.1) !important;
+		.info { 
+			a > span {
+				color: #fff;
+				.user-level {
+					color: #eaeaea;
+				}
+			}
+			.caret {
+				border-top-color: #fff;
+			}
+		}
+	}
+	.nav {
+		.nav-item {
+			a {
+				color: #eaeaea !important;
+				p, i, .caret {
+					color: #eaeaea !important;
+				}
+				&:hover, &:focus, &[data-toggle=collapse][aria-expanded=true] {
+					color: #fff !important;
+					p, i, .caret {
+						color: #fff !important;
+					}
+				}
+			}
+		}
+		> .nav-item {
+			&.active {
+				> a, > a:hover, > a:focus, > a[data-toggle=collapse][aria-expanded=true] {
+					background: #fff !important;
+					color: $color !important;
+					p, i, .caret {
+						color: $color !important;
+					}
+				}
+			}
+		}
+		.nav-section {
+			.text-section, .sidebar-mini-icon {
+				color: #eaeaea;
+			}
+		}
+		.nav-collapse li a .sub-item:before {
+			background: #eaeaea;
+		}
+	}
+	.scrollbar-inner > .scroll-element {
+		.scroll-bar {
+			background-color: #f7f7f7;
+		}
+		&.scroll-draggable .scroll-bar, &:hover .scroll-bar {
+			background-color: #dcdbdb;
+		}
+	}
+}
+
+//[data-background-color="white"]
+.logo-header[data-background-color="white"]{
+	@include logo-header-color-style($white-color);
+}
+.navbar-header[data-background-color="white"] {
+	@include navbar-header-color-style($white-color);
+}
+
+//[data-background-color="dark"]
+
+.logo-header[data-background-color="dark"]{
+	@include logo-header-color-style($dark-color);
+}
+.logo-header[data-background-color="dark2"]{
+	@include logo-header-color-style($dark2-color);
+}
+.navbar-header[data-background-color="dark"] {
+	@include navbar-header-color-style($dark-color);
+}
+.navbar-header[data-background-color="dark2"] {
+	@include navbar-header-color-style($dark2-color);
+}
+
+//[data-background-color="blue"]
+
+.logo-header[data-background-color="blue"]{
+	@include logo-header-color-style($primary-color);
+}
+.logo-header[data-background-color="blue2"]{
+	@include logo-header-color-style($primary2-color);
+}
+.navbar-header[data-background-color="blue"] {
+	@include navbar-header-color-style($primary-color);
+}
+.navbar-header[data-background-color="blue2"] {
+	@include navbar-header-color-style($primary2-color);
+}
+
+//[data-background-color="purple"]
+
+.logo-header[data-background-color="purple"]{
+	@include logo-header-color-style($secondary-color);
+}
+.logo-header[data-background-color="purple2"]{
+	@include logo-header-color-style($secondary2-color);
+}
+.navbar-header[data-background-color="purple"] {
+	@include navbar-header-color-style($secondary-color);
+}
+.navbar-header[data-background-color="purple2"] {
+	@include navbar-header-color-style($secondary2-color);
+}
+
+//[data-background-color="light-blue"]
+
+.logo-header[data-background-color="light-blue"]{
+	@include logo-header-color-style($info-color);
+}
+.logo-header[data-background-color="light-blue2"]{
+	@include logo-header-color-style($info2-color);
+}
+.navbar-header[data-background-color="light-blue"] {
+	@include navbar-header-color-style($info-color);
+}
+.navbar-header[data-background-color="light-blue2"] {
+	@include navbar-header-color-style($info2-color);
+}
+
+//[data-background-color="green"]
+
+.logo-header[data-background-color="green"]{
+	@include logo-header-color-style($success-color);
+}
+.logo-header[data-background-color="green2"]{
+	@include logo-header-color-style($success2-color);
+}
+.navbar-header[data-background-color="green"] {
+	@include navbar-header-color-style($success-color);
+}
+.navbar-header[data-background-color="green2"] {
+	@include navbar-header-color-style($success2-color);
+}
+
+//[data-background-color="orange"]
+
+.logo-header[data-background-color="orange"]{
+	@include logo-header-color-style($warning-color);
+}
+.logo-header[data-background-color="orange2"]{
+	@include logo-header-color-style($warning2-color);
+}
+.navbar-header[data-background-color="orange"] {
+	@include navbar-header-color-style($warning-color);
+}
+.navbar-header[data-background-color="orange2"] {
+	@include navbar-header-color-style($warning2-color);
+}
+
+//[data-background-color="red"]
+
+.logo-header[data-background-color="red"]{
+	@include logo-header-color-style($danger-color);
+}
+.logo-header[data-background-color="red2"]{
+	@include logo-header-color-style($danger2-color);
+}
+.navbar-header[data-background-color="red"] {
+	@include navbar-header-color-style($danger-color);
+}
+.navbar-header[data-background-color="red2"] {
+	@include navbar-header-color-style($danger2-color);
+}
+
+.sidebar[data-background-color="dark"] {
+	@include sidebar-color-style($dark-color);
+}
+
+.sidebar[data-background-color="dark2"] {
+	@include sidebar-color-style($dark2-color);
+}
+
+.sidebar[data-background-color="blue"] {
+	@include sidebar-color-style2($primary-color);
+}
+
+.sidebar[data-background-color="blue2"] {
+	@include sidebar-color-style2($primary2-color);
+}
+
+.sidebar[data-background-color="purple"] {
+	@include sidebar-color-style2($secondary-color);
+}
+
+.sidebar[data-background-color="purple2"] {
+	@include sidebar-color-style2($secondary2-color);
+}
+
+.sidebar[data-background-color="light-blue"] {
+	@include sidebar-color-style2($info-color);
+}
+
+.sidebar[data-background-color="light-blue2"] {
+	@include sidebar-color-style2($info2-color);
+}
+
+.sidebar[data-background-color="green"] {
+	@include sidebar-color-style2($success-color);
+}
+
+.sidebar[data-background-color="green2"] {
+	@include sidebar-color-style2($success2-color);
+}
+
+.sidebar[data-background-color="orange"] {
+	@include sidebar-color-style2($warning-color);
+}
+
+.sidebar[data-background-color="orange2"] {
+	@include sidebar-color-style2($warning2-color);
+}
+
+.sidebar[data-background-color="red"] {
+	@include sidebar-color-style2($danger-color);
+}
+
+.sidebar[data-background-color="red2"] {
+	@include sidebar-color-style2($danger2-color);
+}
+

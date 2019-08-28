@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<body class="login" style="color:black">
+    <div class="wrapper wrapper-login wrapper-login-full p-0" style="color:black">
+        <div style="color:black" class="login-aside w-50 d-flex flex-column align-items-center justify-content-center text-center bg-secondary-gradient">
+
+
+            <center>
+                <img src="~/Content/images/MAS_logo.png" alt="">
+            </center>
+
+            </br></br>
+
+            <h1 class="title fw-bold text-white mb-3">Industrial Sustainability & Safety Maintenance System</h1>
+            <!-- <p class="subtitle text-white op-7">Industrial Sustainability & Safety Maintenance System</p> -->
+            </br></br>		</br>
+
+            <div class="year">
+                <h5 style="font-weight: bold;">Copyrights &copy; THIRTYFIRST LANKA  2019 |  All Rights Reserved</h5>
+            </div><!-- year -->
+
+        </div>
+
+        <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
+            <div class="container container-login animated fadeIn">
+                <h3 class="text-center">Sign Up</h3>
+
+
+                <div class="login-form">
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-row">
+
+                            <div class="form-group form-floating-label">
+                                <input id="fullname" name="UserFullName" type="text" class="form-control input-border-bottom" required>
+                                <label for="fullname" class="placeholder">Full Name</label>
+                            </div>
+
+                            <div class="form-group form-floating-label">
+                                <input id="mobile" name="UserMobile" type="text" class="form-control input-border-bottom" required>
+                                <label for="mobile" class="placeholder">Mobile</label>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <div class="form-group form-floating-label">
+                            <input id="email" name="UserEmail" type="email" class="form-control input-border-bottom" required>
+                            <label for="email" class="placeholder">Email</label>
+                        </div>
+
+
+
+
+
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend" style="margin-left:8px;">
+                                <label class="input-group-text" for="inputGroupSelect02">Department</label>
+                            </div>
+                            <select class="custom-select" name="UserDepartment" id="inputGroupSelect02" required="" style="margin-right:8px; height:40px;">
+                                <option value="">Select Your Department</option>
+                                <option value="Factory Engineering">Factory Engineering</option>
+                                <option value="Production Engineering">Production Engineering</option>
+                                <option value="Autonomation">Autonomation</option>
+                                <option value="MOS">MOS</option>
+                                <option value="RM">RM</option>
+                                <option value="Quality">Quality</option>
+                                <option value="FG">FG</option>
+                                <option value="Technical">Technical</option>
+                                <option value="Cutting">Cutting</option>
+                                <option value="HR">HR</option>
+                                <option value="Operation">Operation</option>
+                                <option value="Production VSM 01">Production VSM 01</option>
+                                <option value="Production VSM 02">Production VSM 02</option>
+                                <option value="Production VSM 03">Production VSM 03</option>
+                                <option value="Production VSM 04">Production VSM 04</option>
+                                <option value="Pre-Sewing">Pre-Sewing</option>
+                                <option value="Emblishment">Emblishment</option>
+                                <option value="IE">IE</option>
+                            </select>
+                        </div>
+
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend" style="margin-left:8px;">
+                                <label class="input-group-text" for="inputGroupSelect03">Register As</label>
+                            </div>
+                            <select class="custom-select" name="UserType" id="inputGroupSelect03" required="" style="margin-right:8px; height:40px;">
+                                <option value="">Select User Role</option>
+                                <option value="Management">Management</option>
+                                <option value="Token Manager">Token Manager</option>
+                                <option value="Department Leader">Department Leader</option>
+                                <option value="Administrator">Administrator</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="form-group form-floating-label">
+                            <input id="Password" name="Password" type="password" class="form-control input-border-bottom" required>
+                            <label for="Password" class="placeholder">Password</label>
+                            <div class="show-password">
+                                <i class="icon-eye"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-floating-label">
+                            <input id="ConfirmPassword" name="ConfirmPassword" type="password" class="form-control input-border-bottom" required>
+                            <label for="ConfirmPassword" class="placeholder">Confirm Password</label>
+                            <div class="show-password">
+                                <i class="icon-eye"></i>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row form-sub m-0">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="agree" id="agree">
+                                <label class="custom-control-label" for="agree">I Agree the terms and conditions.</label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-action">
+
+                            @Html.ActionLink("Sign In", "Login", "UserLogin", null, new { @class = "btn btn-link btn-link btn-login mr-3" })
+                            <input type="submit" value="Sign Up" class="btn btn-secondary col-md-5 float-right mt-3 mt-sm-0 fw-bold" />
+                        </div>
+
+
+
+
+                    }
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <!--   Core JS Files   -->
+
+
+        <script src="~/Content/assets/js/core/jquery.3.2.1.min.js"></script>
+        <script src="~/Content/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+        <script src="~/Content/assets/js/core/popper.min.js"></script>
+        <script src="~/Content/assets/js/core/bootstrap.min.js"></script>
+        <script src="~/Content/assets/js/atlantis.min.js"></script>
+
+
+        <!-------------------------------->
+
+
+</body>
+
+

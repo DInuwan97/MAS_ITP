@@ -1,0 +1,371 @@
+﻿@using MAS_Sustainability.Models;
+@model MainModel
+
+@{
+    Layout = "~/Views/Home/LayoutBody.cshtml";
+}
+@{
+    ViewBag.Title = "TokenUpdate";
+}
+
+
+
+<div class="main-panel">
+    @foreach (var TokenInformation in Model.ListToken)
+    {
+        <div class="content">
+            <div class="page-inner">
+
+                <div class="page-header">
+                    <h4 class="page-title">Lists</h4>
+                    <ul class="breadcrumbs">
+                        <li class="nav-home">
+                            <a href="#">
+                                <i class="flaticon-home"></i>
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="flaticon-right-arrow"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Base</a>
+                        </li>
+                        <li class="separator">
+                            <i class="flaticon-right-arrow"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Lists</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Capture the Problem</h4>
+
+
+
+                                @using (Html.BeginForm("DoUpdateProcessInDetail", "Token", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="input-file input-file-image">
+                                                    <img class="img-upload-preview img-circle" width="100" height="100" src="@Url.Content(Model.FirstImagePath)" alt="preview">
+                                                    <input type="file" class="form-control form-control-file" id="ImageFile1" name="FirstImageFile" accept="image/*" required="">
+                                                    <label for="ImageFile1" class="badge badge-primary">
+                                                        <span class="btn-label">
+                                                            <i class="fa fa-file-image"></i>
+                                                        </span>
+                                                        Add New
+                                                    </label>
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-md-3">
+                                                <div class="input-file input-file-image">
+                                                    <img class="img-upload-preview img-circle" width="100" height="100" src="@Url.Content(Model.SecondImagePath)" alt="preview">
+                                                    <input type="file" class="form-control form-control-file" id="ImageFile2" name="SecondImageFile" accept="image/*">
+                                                    <label for="ImageFile2" class="badge badge-primary">
+                                                        <span class="btn-label">
+                                                            <i class="fa fa-file-image"></i>
+                                                        </span>
+                                                        Add New
+                                                    </label>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4 class="card-title">More Information about Problem</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Problem Name</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control" id="ProblemName" name="ProblemName" value="@TokenInformation.ProblemName" placeholder="@TokenInformation.ProblemName">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Attention Level</label>
+                                                                <div class="input-group">
+                                                                    <input type="number" class="form-control" id="AttentionLevel" name="AttentionLevel" value="@TokenInformation.AttentionLevel">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Problem Category</label>
+                                                                <div class="input-group">
+
+                                                                    <select id="basic" name="ProblemCategory" class="form-control">
+                                                                        <option value="@TokenInformation.ProblemCategory">@TokenInformation.ProblemCategory</option>
+                                                                        <option value="Sustainability">Sustainability</option>
+                                                                        <option value="Safety">Safety</option>
+
+                                                                    </select>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Location</label>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control" id="Location" name="Location"  value="@TokenInformation.Location">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                    <input type="hidden" value="@TokenInformation.TokenAuditID" id="TokenAuditID" name="TokenAuditID">
+
+
+                                                    <div class="form-group">
+                                                        <label for="comment">Problem in Brief</label>
+                                                        <textarea class="form-control" id="comment" rows="5" name="Description">
+                                                            @TokenInformation.Description
+										                </textarea>
+                                                    </div>
+
+                                                    <center>
+                                                       
+                                                        <input type="submit" value="UPDATE TOKEN" class="btn btn-success" />
+                                                    </center>
+
+
+
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                            
+                        </div>
+    }
+    </div>
+
+                        <!--   Core JS Files   -->
+                        <script src="~/Content/assets/js/core/jquery.3.2.1.min.js"></script>
+                        <script src="~/Content/assets/js/core/popper.min.js"></script>
+                        <script src="~/Content/assets/js/core/bootstrap.min.js"></script>
+
+                        <!-- jQuery UI -->
+                        <script src="~/Content/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+                        <script src="~/Content/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+
+                        <!-- jQuery Scrollbar -->
+                        <script src="~/Content/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+                        <!-- Moment JS -->
+                        <script src="~/Content/assets/js/plugin/moment/moment.min.js"></script>
+
+                        <!-- Chart JS -->
+                        <script src="~/Content/assets/js/plugin/chart.js/chart.min.js"></script>
+
+                        <!-- jQuery Sparkline -->
+                        <script src="~/Content/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+                        <!-- Chart Circle -->
+                        <script src="~/Content/assets/js/plugin/chart-circle/circles.min.js"></script>
+
+                        <!-- Datatables -->
+                        <script src="~/Content/assets/js/plugin/datatables/datatables.min.js"></script>
+
+                        <!-- Bootstrap Notify -->
+                        <script src="~/Content/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+                        <!-- Bootstrap Toggle -->
+                        <script src="~/Content/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
+                        <!-- jQuery Vector Maps -->
+                        <script src="~/Content/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+                        <script src="~/Content/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+
+                        <!-- Google Maps Plugin -->
+                        <script src="~/Content/assets/js/plugin/gmaps/gmaps.js"></script>
+
+                        <!-- Dropzone -->
+                        <script src="~/Content/assets/js/plugin/dropzone/dropzone.min.js"></script>
+
+                        <!-- Fullcalendar -->
+                        <script src="~/Content/assets/js/plugin/fullcalendar/fullcalendar.min.js"></script>
+
+                        <!-- DateTimePicker -->
+                        <script src="~/Content/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+
+                        <!-- Bootstrap Tagsinput -->
+                        <script src="~/Content/assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+                        <!-- Bootstrap Wizard -->
+                        <script src="~/Content/assets/js/plugin/bootstrap-wizard/bootstrapwizard.js"></script>
+
+                        <!-- jQuery Validation -->
+                        <script src="~/Content/assets/js/plugin/jquery.validate/jquery.validate.min.js"></script>
+
+                        <!-- Summernote -->
+                        <script src="~/Content/assets/js/plugin/summernote/summernote-bs4.min.js"></script>
+
+                        <!-- Select2 -->
+                        <script src="~/Content/assets/js/plugin/select2/select2.full.min.js"></script>
+
+                        <!-- Sweet Alert -->
+                        <script src="~/Content/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+                        <!-- Owl Carousel -->
+                        <script src="~/Content/assets/js/plugin/owl-carousel/owl.carousel.min.js"></script>
+
+                        <!-- Magnific Popup -->
+                        <script src="~/Content/assets/js/plugin/jquery.magnific-popup/jquery.magnific-popup.min.js"></script>
+
+                        <!-- Atlantis JS -->
+                        <script src="~/Content/assets/js/atlantis.min.js"></script>
+
+                        <!-- Atlantis DEMO methods, don't include it in your project! -->
+                        <script src="~/Content/assets/js/setting-demo.js"></script>
+                        <script src="~/Content/assets/js/demo.js"></script>
+                        <script>
+                            Circles.create({
+                                id: 'circles-1',
+                                radius: 45,
+                                value: 60,
+                                maxValue: 100,
+                                width: 7,
+                                text: 5,
+                                colors: ['#f1f1f1', '#FF9E27'],
+                                duration: 400,
+                                wrpClass: 'circles-wrp',
+                                textClass: 'circles-text',
+                                styleWrapper: true,
+                                styleText: true
+                            })
+
+                            Circles.create({
+                                id: 'circles-2',
+                                radius: 45,
+                                value: 70,
+                                maxValue: 100,
+                                width: 7,
+                                text: 36,
+                                colors: ['#f1f1f1', '#2BB930'],
+                                duration: 400,
+                                wrpClass: 'circles-wrp',
+                                textClass: 'circles-text',
+                                styleWrapper: true,
+                                styleText: true
+                            })
+
+                            Circles.create({
+                                id: 'circles-3',
+                                radius: 45,
+                                value: 40,
+                                maxValue: 100,
+                                width: 7,
+                                text: 12,
+                                colors: ['#f1f1f1', '#F25961'],
+                                duration: 400,
+                                wrpClass: 'circles-wrp',
+                                textClass: 'circles-text',
+                                styleWrapper: true,
+                                styleText: true
+                            })
+
+                            var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
+
+                            var mytotalIncomeChart = new Chart(totalIncomeChart, {
+                                type: 'bar',
+                                data: {
+                                    labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
+                                    datasets: [{
+                                        label: "Total Income",
+                                        backgroundColor: '#ff9e27',
+                                        borderColor: 'rgb(23, 125, 255)',
+                                        data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
+                                    }],
+                                },
+                                options: {
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    legend: {
+                                        display: false,
+                                    },
+                                    scales: {
+                                        yAxes: [{
+                                            ticks: {
+                                                display: false //this will remove only the label
+                                            },
+                                            gridLines: {
+                                                drawBorder: false,
+                                                display: false
+                                            }
+                                        }],
+                                        xAxes: [{
+                                            gridLines: {
+                                                drawBorder: false,
+                                                display: false
+                                            }
+                                        }]
+                                    },
+                                }
+                            });
+
+                            $('#lineChart').sparkline([105, 103, 123, 100, 95, 105, 115], {
+                                type: 'line',
+                                height: '70',
+                                width: '100%',
+                                lineWidth: '2',
+                                lineColor: '#ffa534',
+                                fillColor: 'rgba(255, 165, 52, .14)'
+                            });
+                        </script>
+
+

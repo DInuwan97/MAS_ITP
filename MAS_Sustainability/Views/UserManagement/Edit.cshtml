@@ -1,0 +1,193 @@
+﻿@using MAS_Sustainability.Models;
+@model MainModel
+
+@{
+    Layout = "~/Views/Home/LayoutBody.cshtml";
+}
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@foreach (var userInformation in Model.ListUserRegistration) {
+<div class="main-panel">
+    <div class="content">
+        <div class="page-inner">
+            <h4 class="page-title">User Profile</h4>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card card-with-nav">
+                        <div class="card-header">
+                            <div class="row row-nav-line">
+                                <ul class="nav nav-tabs nav-line nav-color-secondary" role="tablist">
+                                    <li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="#home" role="tab" aria-selected="true">Timeline</a> </li>
+                                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-selected="false">Profile</a> </li>
+                                    <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#settings" role="tab" aria-selected="false">Settings</a> </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="card-body" id="home">
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-default">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" name="name" placeholder="Name" value="@userInformation.UserFullName">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-default">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" style="color:balck" disabled name="email" placeholder="Name" value="@userInformation.UserEmail">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-default">
+                                        <label>Birth Date</label>
+                                        <input type="text" class="form-control" id="datepicker" name="datepicker" value="" placeholder="Enter Your Birth Date">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-default">
+                                        <label>Gender</label>
+                                        <select class="form-control" id="gender">
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group form-group-default">
+                                        <label>Phone</label>
+                                        <input type="text" class="form-control" value="@userInformation.UserMobile" name="phone" placeholder="Phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="col-md-3">
+                                        <div class="input-file input-file-image">
+                                            <img class="img-upload-preview img-circle" width="120" height="120" src="@Url.Content(userInformation.UserImagePath)" alt="preview">
+                                            <input type="file" class="form-control form-control-file" id="UserImageFile" name="UserImage" accept="userimages/*" required="">
+                                            <label for="UserImageFile" class="badge badge-info">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-file-image"></i>
+                                                </span>
+                                                Add Profile DB
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-right mt-3 mb-3">
+                                <button class="btn btn-success">Save</button>
+                                <button class="btn btn-danger">Reset</button>
+                            </div>
+                        </div>
+
+
+  
+
+
+                        </div>
+                    </div>
+                <div class="col-md-4">
+                    <div class="card card-profile">
+                        <div class="card-header" style="background-image: url('https://via.placeholder.com/325x215')">
+                            <div class="profile-picture">
+                                <div class="avatar avatar-xl">
+                                    <img src="https://via.placeholder.com/60x60" alt="..." class="avatar-img rounded-circle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="user-profile text-center">
+                                <div class="name">@userInformation.UserFullName</div>
+                                <div class="job">@userInformation.UserDepartment</div>
+                                <div class="desc">@userInformation.UserType</div>
+                                <div class="social-media">
+                                    <a class="btn btn-info btn-twitter btn-sm btn-link" href="#">
+                                        <span class="btn-label just-icon"><i class="flaticon-twitter"></i> </span>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#">
+                                        <span class="btn-label just-icon"><i class="flaticon-google-plus"></i> </span>
+                                    </a>
+                                    <a class="btn btn-primary btn-sm btn-link" rel="publisher" href="#">
+                                        <span class="btn-label just-icon"><i class="flaticon-facebook"></i> </span>
+                                    </a>
+                                    <a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#">
+                                        <span class="btn-label just-icon"><i class="flaticon-dribbble"></i> </span>
+                                    </a>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row user-stats text-center">
+                                <div class="col">
+                                    <div class="number">125</div>
+                                    <div class="title">Post</div>
+                                </div>
+                                <div class="col">
+                                    <div class="number">25K</div>
+                                    <div class="title">Followers</div>
+                                </div>
+                                <div class="col">
+                                    <div class="number">134</div>
+                                    <div class="title">Following</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+}
+
+
+
+<script src="~/Content/assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="~/Content/assets/js/core/popper.min.js"></script>
+<script src="~/Content/assets/js/core/bootstrap.min.js"></script>
+<!-- jQuery UI -->
+<script src="~/Content/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="~/Content/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<!-- Moment JS -->
+<script src="~/Content/assets/js/plugin/moment/moment.min.js"></script><!-- DateTimePicker -->
+<script src="~/Content/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+<!-- Bootstrap Toggle -->
+<script src="~/Content/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<!-- jQuery Scrollbar -->
+<script src="~/Content/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<!-- Atlantis JS -->
+<script src="~/Content/assets/js/atlantis.min.js"></script>
+<!-- Atlantis DEMO methods, don't include it in your project! -->
+<script src="~/Content/assets/js/setting-demo.js"></script>
+<script>
+    $('#datepicker').datetimepicker({
+        format: 'MM/DD/YYYY',
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
