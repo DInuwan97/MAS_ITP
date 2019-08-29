@@ -50,7 +50,7 @@
                             @*<label class="col-sm-4 col-form-label"><b>Mobile</b></label>*@
                             <div class="col-sm-12">
                                 <input id="UserMobile" name="UserMobile" type="text" class="form-control"
-                                       placeholder="Mobile No" required>
+                                       placeholder="Mobile No (Ex : 711234567)" required>
                             </div>
                         </div>
 
@@ -171,6 +171,20 @@
                     $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
                 },
             });
+
+            $('input').on('input propertychange paste', function (e) {
+                var reg = /^0+/gi;
+                if (this.value.match(reg)) {
+                    this.value = this.value.replace(reg, '');
+                }
+            });
+
+
+
+
+
+
+
         </script>
     </div>
 </body>
