@@ -348,12 +348,14 @@ namespace MAS_Sustainability.Controllers
                     mySqlDa.Fill(feedbackIDDatatable);
                     if (feedbackIDDatatable.Rows.Count == 0)
                     {
-                        String insertFeedback = "Insert into feedback(userid,tokenid,rating) values( " + UserID + " , " + tokenID + " , 0)";
-
+                        String insertFeedback = "Insert into feedback(userid,tokenid) values( " + UserID + " , " + tokenID + ")";
+                        MySqlCommand commInsertFeedbackRow = new MySqlCommand(insertFeedback, mySqlCon);
+                        commInsertFeedbackRow.ExecuteNonQuery();
+                        
                         mySqlDa.SelectCommand = commGetFeedbackID;
                         mySqlDa.Fill(getFeedbackIDdatable2);
                         var feedbackID = Convert.ToInt32(getFeedbackIDdatable2.Rows[0][0]);
-                        String InsertComment = "Insert into comment(comment,feedbackid) values(" + Comment + "," + feedbackID + ")";
+                        String InsertComment = "Insert into comment(comment,feedbackid) values('" + Comment + "'," + feedbackID + ")";
                         MySqlCommand commInsertComment = new MySqlCommand(InsertComment, mySqlCon);
                         commInsertComment.ExecuteNonQuery();
                         return RedirectToAction("viewReport", "Report", new { id = tokenID });
@@ -361,7 +363,7 @@ namespace MAS_Sustainability.Controllers
                     else
                     {
                         var feedbackID = Convert.ToInt32(feedbackIDDatatable.Rows[0][0]);
-                        String InsertComment = "Insert into comment(comment,feedbackid) values(" + Comment + "," + feedbackID + ")";
+                        String InsertComment = "Insert into comment(comment,feedbackid) values('" + Comment + "'," + feedbackID + ")";
                         MySqlCommand commInsertComment = new MySqlCommand(InsertComment, mySqlCon);
                         commInsertComment.ExecuteNonQuery();
                         return RedirectToAction("viewReport", "Report", new { id = tokenID });

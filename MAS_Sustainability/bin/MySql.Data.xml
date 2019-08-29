@@ -6134,16 +6134,6 @@
             Indicates whether to use SSL connections and how to handle server certificate errors.
             </summary>
         </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.Keepalive">
-            <summary>
-            Gets or sets the idle connection time(seconds) for TCP connections.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.CharacterSet">
-            <summary>
-            Gets or sets the character set that should be used for sending queries to the server.
-            </summary>
-        </member>
         <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SslKey">
             <summary>
             Gets or sets the path to a local key file in PEM format to use for establishing an encrypted connection.
@@ -6152,6 +6142,46 @@
         <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SslCert">
             <summary>
             Gets or sets the path to a local certificate file in PEM format to use for establishing an encrypted connection.
+            </summary>
+        </member>
+        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshHostName">
+            <summary>
+            Gets or sets the name of the SSH server.
+            </summary>
+        </member>
+        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshPort">
+            <summary>
+            Gets or sets the port number to use when authenticating to the SSH server.
+            </summary>
+        </member>
+        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshUserName">
+            <summary>
+            Gets or sets the user name to authenticate to the SSH server.
+            </summary>
+        </member>
+        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshPassword">
+            <summary>
+            Gets or sets the password to authenticate to the SSH server.
+            </summary>
+        </member>
+        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshKeyFile">
+            <summary>
+            Gets or sets the SSH key file to authenticate to the SSH server.
+            </summary>
+        </member>
+        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshPassphrase">
+            <summary>
+            Gets or sets the passphrase of the key file to authenticate to the SSH server.
+            </summary>
+        </member>
+        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.Keepalive">
+            <summary>
+            Gets or sets the idle connection time(seconds) for TCP connections.
+            </summary>
+        </member>
+        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.CharacterSet">
+            <summary>
+            Gets or sets the character set that should be used for sending queries to the server.
             </summary>
         </member>
         <member name="M:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.AnalyzeConnectionString(System.String,System.Boolean)">
@@ -10782,13 +10812,6 @@
             <param name="sslPolicyErrors">One or more errors associated with the remote certificate.</param>
             <returns><c>true</c> if no errors were found based on the selected SSL mode; <c>false</c>, otherwise.</returns>
         </member>
-        <member name="M:MySql.Data.Common.Ssl.GetBuffer(System.String)">
-            <summary>
-            Reads the specified file as a byte array.
-            </summary>
-            <param name="fileName">The path of the file to read.</param>
-            <returns>A byte array representing the read file.</returns>
-        </member>
         <member name="M:MySql.Data.Common.Ssl.GetCertificateFileExtension(System.String,System.Boolean)">
             <summary>
             Gets the extension of the specified file.
@@ -10797,60 +10820,6 @@
             <param name="toLowerCase">Flag to indicate if the result should be converted to lower case.</param>
             <remarks>The . character is ommited from the result.</remarks>
             <returns></returns>
-        </member>
-        <member name="M:MySql.Data.Common.Ssl.ReadSslCertificate(System.String)">
-            <summary>
-            Reads the SSL certificate file.
-            </summary>
-            <param name="filePath">The path to the certificate file.</param>
-            <returns>A <see cref="T:Org.BouncyCastle.X509.X509Certificate"/> instance representing the SSL certificate file.</returns>
-        </member>
-        <member name="M:MySql.Data.Common.Ssl.ReadKey(System.String)">
-            <summary>
-            Reads the SSL certificate key file.
-            </summary>
-            <param name="filePath">The path to the certificate key file.</param>
-            <returns>A <see cref="T:Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair"/> instance representing the SSL certificate key file.</returns>
-        </member>
-        <member name="M:MySql.Data.Common.Ssl.VerifyDates(Org.BouncyCastle.X509.X509Certificate)">
-            <summary>
-            Verifies that the certificate has not yet expired.
-            </summary>
-            <param name="certificate">The certificate to verify.</param>
-        </member>
-        <member name="M:MySql.Data.Common.Ssl.VerifyCAStatus(Org.BouncyCastle.X509.X509Certificate,System.Boolean)">
-            <summary>
-            Verifies a certificate CA status.
-            </summary>
-            <param name="certificate">The certificate to validate.</param>
-            <param name="expectedCAStatus">A flag indicating the expected CA status.</param>
-        </member>
-        <member name="M:MySql.Data.Common.Ssl.VerifySignature(Org.BouncyCastle.X509.X509Certificate,Org.BouncyCastle.X509.X509Certificate)">
-            <summary>
-            Verifies that the certificate was signed using the private key that corresponds to the specified public key
-            </summary>
-            <param name="certificate">The client side certificate containing the public key.</param>
-            <param name="serverCertificate">The server certificate.</param>
-        </member>
-        <member name="M:MySql.Data.Common.Ssl.VerifyIdentity(System.Net.Security.SslPolicyErrors)">
-            <summary>
-            Verifies that no SSL policy errors regarding the identitfy of the host were raised.
-            </summary>
-            <param name="sslPolicyErrors">A <see cref="T:System.Net.Security.SslPolicyErrors"/> instance set with the raised SSL errors.</param>
-        </member>
-        <member name="M:MySql.Data.Common.Ssl.VerifyIssuer(Org.BouncyCastle.X509.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate)">
-            <summary>
-            Verifies that the CA by comparing the CA certificate issuer and the server certificate issuer.
-            </summary>
-            <param name="CACertificate">The CA certificate.</param>
-            <param name="serverCertificate">The server certificate.</param>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:MySql.Data.Common.Ssl.IsCA(Org.BouncyCastle.X509.X509Certificate,System.Int32@)" -->
-        <member name="M:MySql.Data.Common.Ssl.VerifyEmptyOrWhitespaceSslConnectionOption(System.String,System.String)">
-            <summary>
-            Raises an exception if the specified connection option is null, empty or whitespace.
-            </summary>
-            <param name="connectionOption">The connection option to verify.</param>
         </member>
         <member name="T:MySql.Data.Common.StreamCreator">
             <summary>
@@ -10869,6 +10838,72 @@
             Summary description for Version.
             </summary>
         </member>
+        <member name="T:MySql.Data.common.SslPemCertificateValidator">
+            <summary>
+            Provides functionality to read SSL PEM certificates and to perform multiple validations via Bouncy Castle.
+            </summary>
+        </member>
+        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifyEmptyOrWhitespaceSslConnectionOption(System.String,System.String)">
+            <summary>
+            Raises an exception if the specified connection option is null, empty or whitespace.
+            </summary>
+            <param name="connectionOption">The connection option to verify.</param>
+        </member>
+        <member name="M:MySql.Data.common.SslPemCertificateValidator.GetBuffer(System.String)">
+            <summary>
+            Reads the specified file as a byte array.
+            </summary>
+            <param name="fileName">The path of the file to read.</param>
+            <returns>A byte array representing the read file.</returns>
+        </member>
+        <member name="M:MySql.Data.common.SslPemCertificateValidator.ReadSslCertificate(System.String)">
+            <summary>
+            Reads the SSL certificate file.
+            </summary>
+            <param name="filePath">The path to the certificate file.</param>
+            <returns>A <see cref="T:Org.BouncyCastle.X509.X509Certificate"/> instance representing the SSL certificate file.</returns>
+        </member>
+        <member name="M:MySql.Data.common.SslPemCertificateValidator.ReadKey(System.String)">
+            <summary>
+            Reads the SSL certificate key file.
+            </summary>
+            <param name="filePath">The path to the certificate key file.</param>
+            <returns>A <see cref="T:Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair"/> instance representing the SSL certificate key file.</returns>
+        </member>
+        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifyDates(Org.BouncyCastle.X509.X509Certificate)">
+            <summary>
+            Verifies that the certificate has not yet expired.
+            </summary>
+            <param name="certificate">The certificate to verify.</param>
+        </member>
+        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifyCAStatus(Org.BouncyCastle.X509.X509Certificate,System.Boolean)">
+            <summary>
+            Verifies a certificate CA status.
+            </summary>
+            <param name="certificate">The certificate to validate.</param>
+            <param name="expectedCAStatus">A flag indicating the expected CA status.</param>
+        </member>
+        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifySignature(Org.BouncyCastle.X509.X509Certificate,Org.BouncyCastle.X509.X509Certificate)">
+            <summary>
+            Verifies that the certificate was signed using the private key that corresponds to the specified public key
+            </summary>
+            <param name="certificate">The client side certificate containing the public key.</param>
+            <param name="serverCertificate">The server certificate.</param>
+        </member>
+        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifyIdentity(System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Verifies that no SSL policy errors regarding the identitfy of the host were raised.
+            </summary>
+            <param name="sslPolicyErrors">A <see cref="T:System.Net.Security.SslPolicyErrors"/> instance set with the raised SSL errors.</param>
+        </member>
+        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifyIssuer(Org.BouncyCastle.X509.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate)">
+            <summary>
+            Verifies that the issuer matches the CA by comparing the CA certificate issuer and the server certificate issuer.
+            </summary>
+            <param name="CACertificate">The CA certificate.</param>
+            <param name="serverCertificate">The server certificate.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:MySql.Data.common.SslPemCertificateValidator.IsCA(Org.BouncyCastle.X509.X509Certificate,System.Int32@)" -->
         <member name="T:MySql.Data.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -11356,6 +11391,11 @@
               Looks up a localized string similar to Parameter cannot be null.
             </summary>
         </member>
+        <member name="P:MySql.Data.Resources.ParameterCannotBeNullOrEmpty">
+            <summary>
+              Looks up a localized string similar to Parameter &apos;{0}&apos; can&apos;t be null or empty..
+            </summary>
+        </member>
         <member name="P:MySql.Data.Resources.ParameterIndexNotFound">
             <summary>
               Looks up a localized string similar to Parameter index was not found in Parameter Collection..
@@ -11499,6 +11539,16 @@
         <member name="P:MySql.Data.Resources.SPNotSupported">
             <summary>
               Looks up a localized string similar to Stored procedures are not supported on this version of MySQL.
+            </summary>
+        </member>
+        <member name="P:MySql.Data.Resources.SshAuthenticationModeNotSet">
+            <summary>
+              Looks up a localized string similar to The SSH Key File and/or SSH Password must be provided..
+            </summary>
+        </member>
+        <member name="P:MySql.Data.Resources.SshInvalidPassphrase">
+            <summary>
+              Looks up a localized string similar to The provided passphrase is invalid..
             </summary>
         </member>
         <member name="P:MySql.Data.Resources.SslCertificateCAMismatch">
@@ -13100,6 +13150,7 @@
             <para />- TIMESTAMP
             <para />- DATETIME
             <para />- TEXT[(length)]
+            <para />- CHAR[(lenght)] 
             <para />- GEOJSON (extra options: options, srid)
             </para>
             </remarks>
@@ -13337,7 +13388,7 @@
         </member>
         <member name="M:MySqlX.XDevAPI.Common.FilterableStatement`3.Where(System.String)">
             <summary>
-            Allows the user to set the where condition for this operation.
+            Enables the setting of Where condition for this operation.
             </summary>
             <param name="condition">The Where condition.</param>
             <returns>The implementing statement type.</returns>
@@ -13565,6 +13616,13 @@
             <param name="order">The order criteria.</param>
             <returns>A generic object representing the implementing statement type.</returns>
         </member>
+        <member name="M:MySqlX.XDevAPI.CRUD.FindStatement.Where(System.String)">
+            <summary>
+            Enables the setting of Where condition for this operation.
+            </summary>
+            <param name="condition">The Where condition.</param>
+            <returns>The implementing statement type.</returns>
+        </member>
         <member name="T:MySqlX.XDevAPI.CRUD.ModifyStatement">
             <summary>
             Represents a chaining collection modify statement.
@@ -13627,6 +13685,13 @@
             <param name="order">The order criteria.</param>
             <returns>A generic object representing the implementing statement type.</returns>
         </member>
+        <member name="M:MySqlX.XDevAPI.CRUD.ModifyStatement.Where(System.String)">
+            <summary>
+            Enables the setting of Where condition for this operation.
+            </summary>
+            <param name="condition">The Where condition.</param>
+            <returns>The implementing statement type.</returns>
+        </member>
         <member name="M:MySqlX.XDevAPI.CRUD.ModifyStatement.Execute">
             <summary>
             Executes the modify statement.
@@ -13645,6 +13710,13 @@
             </summary>
             <param name="order">The order criteria.</param>
             <returns>A generic object representing the implementing statement type.</returns>
+        </member>
+        <member name="M:MySqlX.XDevAPI.CRUD.RemoveStatement.Where(System.String)">
+            <summary>
+            Enables the setting of Where condition for this operation.
+            </summary>
+            <param name="condition">The Where condition.</param>
+            <returns>The implementing statement type.</returns>
         </member>
         <member name="M:MySqlX.XDevAPI.CRUD.RemoveStatement.Execute">
             <summary>
