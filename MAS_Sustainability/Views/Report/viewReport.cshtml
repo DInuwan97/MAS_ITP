@@ -69,6 +69,24 @@
                                                     <td>@Html.DisplayNameFor(m => m.report.AddedDate)</td>
                                                     <td>@Html.DisplayFor(m => m.report.AddedDate)</td>
                                                 </tr>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td>@Html.DisplayNameFor(m => m.report.recievedDateRepair)</td>
+                                                    <td>@Html.DisplayFor(m => m.report.recievedDateRepair)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>@Html.DisplayNameFor(m => m.report.DeadLineRepair)</td>
+                                                    <td>@Html.DisplayFor(m => m.report.DeadLineRepair)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>@Html.DisplayNameFor(m => m.report.amountRepair)</td>
+                                                    <td>@Html.DisplayFor(m => m.report.amountRepair)</td>
+                                                </tr>
+
 
                                             </tbody>
 
@@ -328,6 +346,7 @@
                     filename: '@Html.DisplayFor(m => m.report.ProblemName) Report',
                     title: '@Html.DisplayFor(m => m.report.ProblemName) Report',
                     extension: 'pdf',
+                    text:'Export PDF',
 
                     exportOptions: {
                         stripHtml: false,
@@ -348,6 +367,12 @@
                                 margin: 50
                             }
                         });
+
+
+                        doc.content[1].table.widths = ['30%','70%'];
+                       // doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+
+
                         for (var i = 1; i < doc.content[1].table.body.length; i++) {
                             if (doc.content[1].table.body[i][0].text == 'Images') {
 

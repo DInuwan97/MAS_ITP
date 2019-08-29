@@ -124,7 +124,7 @@ namespace MAS_Sustainability.Controllers
             }
             else
             {
-
+                
 
 
 
@@ -140,6 +140,19 @@ namespace MAS_Sustainability.Controllers
                     Image2path = ReportDataTable1.Rows[1][12].ToString()
 
                 };
+
+                if (RepairDetailsDatatable.Rows.Count == 0)
+                {
+                    rep.recievedDateRepair = "";
+                    rep.DeadLineRepair = "";
+                    rep.amountRepair = "";
+                }
+                else
+                {
+                    rep.recievedDateRepair = RepairDetailsDatatable.Rows[0][4].ToString();
+                    rep.DeadLineRepair = RepairDetailsDatatable.Rows[0][5].ToString();
+                    rep.amountRepair = RepairDetailsDatatable.Rows[0][6].ToString();
+                }
 
                 DataTable commentsDatatable = new DataTable();
                 DataTable likeDislikeCountDatatable = new DataTable();
