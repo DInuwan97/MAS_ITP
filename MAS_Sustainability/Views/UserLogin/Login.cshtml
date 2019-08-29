@@ -23,6 +23,8 @@
                 <h5 style="font-weight: bold;">Copyrights &copy; THIRTYFIRST LANKA  2019 |  All Rights Reserved</h5>
             </div><!-- year -->
 
+
+
         </div>
         <div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
 
@@ -36,27 +38,27 @@
 
                 <div class="login-form">
 
-                    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "loginform" }))
+                    @using (Html.BeginForm())
                     {
 
-                        <div class="form-group form-show-validation row">
-                            <div class="col-sm-12">
-                                <input id="email" name="LoginUserEmail" type="email" class="form-control"
-                                       placeholder="Email" required>
+
+                        <div class="form-group form-floating-label">
+                            <input id="email" name="LoginUserEmail" type="email" class="form-control input-border-bottom" required>
+                            <label for="email" class="placeholder">Email</label>
+                        </div>
+
+                        <div class="form-group form-floating-label">
+                            <input id="Password" name="LoginUserPassword" type="password" class="form-control input-border-bottom" required>
+                            <label for="Password" class="placeholder">Password</label>
+                            <div class="show-password">
+                                <i class="icon-eye"></i>
                             </div>
                         </div>
 
-                        <div class="form-group form-show-validation row">
 
-                            <div class="col-sm-12">
-                                <input id="Password" name="LoginUserPassword" type="password" class="form-control"
-                                       placeholder="Password" required>
-                                <div class="show-password">
-                                    <i class="icon-eye"></i>
-                                </div>
-                            </div>
-                            
-                        </div>
+
+
+
 
                         <div class="form-group form-action-d-flex mb-3">
                             <div class="custom-control custom-checkbox">
@@ -72,6 +74,10 @@
                     <div class="login-account">
                         <span class="msg">Don't have an account yet ?</span>
                         @Html.ActionLink("Sign Up", "Create", "UserRegistration", null, new { @class = "link" })
+                    </div>
+
+                    <div class="login-account">
+                        @Html.ActionLink("Forgotten Password?", "ForgottenPassword", "UserRegistration", null, new { @class = "link" })
                     </div>
 
 
@@ -93,32 +99,10 @@
     <script src="~/Content/assets/js/core/popper.min.js"></script>
     <script src="~/Content/assets/js/core/bootstrap.min.js"></script>
     <script src="~/Content/assets/js/atlantis.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
+
 
     <!-------------------------------->
-    <script>
-        $("#loginform").validate({
-            validClass: "success",
-            rules: {
-                gender: { required: true },
-                confirmpassword: {
-                    equalTo: "#password"
-                },
-                birth: {
-                    date: true
-                },
-                uploadImg: {
-                    required: true,
-                },
-            },
-            highlight: function (element) {
-                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-            },
-            success: function (element) {
-                $(element).closest('.form-group').removeClass('has-error').addClass('has-success');
-            },
-        });
-    </script>
+
 
 </body>
 

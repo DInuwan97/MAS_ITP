@@ -35,39 +35,38 @@
 
                 @foreach (var forgotDetails in Model.ForgottenDetails)
                 {
-                    <script>
-                        //document.write('<input type="text" name="mobile_digits" id="mobile_digits" value="@forgotDetails.UserMobile">');
-                        //var MobileDigits = document.getElementById("mobile_digits").value;
-                       // var last03digits = MobileDigits.Substring(1,4);
-                        //console.log(MobileDigits);
-
-                    </script>
 
                     <span class="msg" id="mobileDigits" style="margin-left:10px; font-style:bold;">Secure code has been sent to the 0 @forgotDetails.UserMobile</span>
 
+                    using (Html.BeginForm("Validate", "UserRegistration", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
 
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="digit1" name="digit1" value="" style="font-size:20px;">
+                        <input type="hidden" name="UserID" value="@forgotDetails.UserID">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="SecretKey" name="SecretKey" value="" style="font-size:20px;">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group form-action-d-flex mb-3">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="rememberme">
-                            <label class="custom-control-label m-0" for="rememberme">Remember Me</label>
+                        <div class="form-group form-action-d-flex mb-3">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="rememberme">
+                                <label class="custom-control-label m-0" for="rememberme">Remember Me</label>
+                            </div>
+                            <button class="btn btn-secondary col-md-5 float-right mt-3 mt-sm-0 fw-bold">Next</button>
                         </div>
-                        <button class="btn btn-secondary col-md-5 float-right mt-3 mt-sm-0 fw-bold">Next</button>
-                    </div>
+
+                    }
 
                 }
 
 
 
-                <div class="login-account">
-                    <span class="msg">Don't have an account yet ?</span>
-                    <a href="#" id="show-signup" class="link">Send</a>
-                </div>
+                        <div class="login-account">
+                            <span class="msg">Don't have an account yet ?</span>
+                            @Html.ActionLink("Sign Up", "Create", "UserRegistration", null, new { @class = "link" })
+                        </div>
 
 
 

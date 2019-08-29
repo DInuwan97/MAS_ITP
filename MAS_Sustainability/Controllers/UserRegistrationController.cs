@@ -36,7 +36,7 @@ namespace MAS_Sustainability.Controllers
         public ActionResult Create(UserRegistrationModel userRegistrationModel)
         {
             DB dbConn = new DB();
-
+            List<UserRegistrationModel> ForgotDetails = new List<UserRegistrationModel>();
             // String connectionString = @"server=localhost;port=3306;user id=root;database=mas_isscs;password=ThirtyFirst9731@;";
 
 
@@ -57,16 +57,19 @@ namespace MAS_Sustainability.Controllers
                 mySqlcmd.Parameters.AddWithValue("@UserType", "Employee");
                 mySqlcmd.Parameters.AddWithValue("@UserImage", "NULL");
 
+                Session["forgotEmail"] = userRegistrationModel.UserEmail;
+                Session["forgotMobile"] = Convert.ToInt32(userRegistrationModel.UserMobile);
+
                 int mobileDigists = Convert.ToInt32(userRegistrationModel.UserMobile) % 10000;
                 userRegistrationModel.SecretKey = mobileDigists + Convert.ToInt32(DateTime.Now.ToString("yymmssfff"));
 
                 mySqlcmd.Parameters.AddWithValue("@SecretKey", userRegistrationModel.SecretKey);
                 mySqlcmd.Parameters.AddWithValue("@Validation", "false");
 
-                string UserName = "0712184518";
-                string Password = "5010";
-                string PhoneNo =  userRegistrationModel.UserMobile.ToString();
-                string Message = "Your Security Code : " + userRegistrationModel.SecretKey.ToString();
+                string UserName = ""; //acount username
+                string Password = ""; //account password
+                string PhoneNo =  "94"+userRegistrationModel.UserMobile.ToString();
+                string Message = "Hello " +userRegistrationModel.UserFullName+". Welcome to MAS IMS.Your Security Code : " + userRegistrationModel.SecretKey.ToString();
 
                 string url = @"http://api.liyanagegroup.com/sms_api.php?sms=" + @Message + "&to=" + @PhoneNo + "&usr=" + @UserName + "&pw=" + @Password;
                 WebRequest request = HttpWebRequest.Create(url);
@@ -92,7 +95,7 @@ namespace MAS_Sustainability.Controllers
 
             }
 
-            return RedirectToAction("Create");
+            return RedirectToAction("SecureCode","UserRegistration");
         }
 
         // GET: UserRegistration/Edit/5
@@ -177,18 +180,8 @@ namespace MAS_Sustainability.Controllers
 
                 if (dt.Rows.Count == 1)
                 {
-                    //Session["user"] = new UserLogin() { Login = userLogin.LoginUserEmail, LoginUserEmail = userLogin.LoginUserEmail };
-
                     Session["forgotEmail"] = userRegistrationModel.UserEmail;
-                    /*ForgotDetails.Add(new UserRegistrationModel
-                    {
-                        UserEmail = dt.Rows[0][1].ToString(),
-                        UserMobile = dt.Rows[0][2].ToString()
-                    });*/
-
-                    //userRegistrationModel.UserEmail = dt.Rows[0][1].ToString();
                     Session["forgotMobile"] = Convert.ToInt32(userRegistrationModel.UserMobile);
-                    // userRegistrationModel.UserMobile = dt.Rows[0][2].ToString();
                     return RedirectToAction("SecureCode", "UserRegistration");
                 }
 
@@ -215,30 +208,79 @@ namespace MAS_Sustainability.Controllers
                 mySqlCon.Open();
 
                 userEmail = userRegistrationModel.UserEmail;
-                //userMobile = userRegistrationModel.UserMobile;
 
                 String qry = "SELECT UserID,UserMobile FROM users WHERE UserEmail = '"+ Session["forgotEmail"] + "'";
                 MySqlDataAdapter mySqlData_UserList = new MySqlDataAdapter(qry, mySqlCon);
                 mySqlData_UserList.Fill(dt);
 
-            }
-
-            if(dt.Rows.Count == 1)
-            {
-                
-
-                ForgotDetails.Add(new UserRegistrationModel
+                if (dt.Rows.Count == 1)
                 {
-                    UserID = Convert.ToInt32(dt.Rows[0][0].ToString()),
-                    UserMobile = dt.Rows[0][1].ToString()
-                });
 
-                mainModel.ForgottenDetails = ForgotDetails;
 
-                return View(mainModel);
+                    ForgotDetails.Add(new UserRegistrationModel
+                    {
+                        UserID = Convert.ToInt32(dt.Rows[0][0].ToString()),
+                        UserMobile = dt.Rows[0][1].ToString()
+                    });
+
+                    mainModel.ForgottenDetails = ForgotDetails;
+
+                    return View(mainModel);
+                }
+
+
             }
 
             return View();
         }
+
+        public ActionResult Validate(UserRegistrationModel userRegistrationModel)
+        {
+            DB dbConn = new DB();
+            MainModel mainModel = new MainModel();
+           
+
+            using (MySqlConnection mySqlCon = dbConn.DBConnection())
+            {
+
+                String UserMobile = Session["forgotMobile"].ToString();
+                int UserID = userRegistrationModel.UserID;
+                String SecretKey = userRegistrationModel.SecretKey.ToString();
+
+                mySqlCon.Open();
+                MySqlCommand mySqlCmd = mySqlCon.CreateCommand();
+                mySqlCmd.CommandType = System.Data.CommandType.Text;
+                mySqlCmd.CommandText = "SELECT UserID,SecretKey,UserMobile FROM users WHERE SecretKey = '"+SecretKey+"' and UserID = '"+UserID+"'";
+                mySqlCmd.ExecuteNonQuery();
+                DataTable dtblToken = new DataTable();
+                MySqlDataAdapter mySqlDa = new MySqlDataAdapter(mySqlCmd);
+                mySqlDa.Fill(dtblToken);
+
+            
+
+                foreach(DataRow dr in dtblToken.Rows)
+                {
+                    if(dtblToken.Rows[0][1].Equals(userRegistrationModel.SecretKey))
+                    {
+                        String qry_update_validation = "UPDATE users SET Validation = 'true' WHERE UserID = @UserID";
+                        MySqlCommand mySqlCommand_update_validity = new MySqlCommand(qry_update_validation, mySqlCon);
+                        mySqlCommand_update_validity.Parameters.AddWithValue("@UserID", userRegistrationModel.UserID);
+                        mySqlCommand_update_validity.Parameters.AddWithValue("@UserMobile", UserMobile);
+
+                        mySqlCommand_update_validity.ExecuteNonQuery();
+
+                        return RedirectToAction("Login", "UserLogin");
+
+                    }
+                    else
+                    {
+                        //Secret Key Mismatching
+                    }
+                }//invalid email
+            }
+            return View();    
+        }
+
+
     }
 }
