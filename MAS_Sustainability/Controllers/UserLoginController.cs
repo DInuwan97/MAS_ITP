@@ -30,7 +30,7 @@ namespace MAS_Sustainability.Controllers
                 //  String qry = "SELECT UserEmail,Password FROM users WHERE UserEmail = '"+userEmail+"' AND Password = '"+userPassword+"' ";
                 MySqlCommand mySqlCmd = mySqlCon.CreateCommand();
                 mySqlCmd.CommandType = System.Data.CommandType.Text;
-                mySqlCmd.CommandText = "SELECT UserEmail,Password FROM users WHERE UserEmail = '" + userEmail + "' AND Password = '" + userPassword + "' ";
+                mySqlCmd.CommandText = "SELECT UserEmail,Password FROM users WHERE UserEmail = '" + userEmail + "' AND Password = '" + userPassword + "' and Validation = 'true' ";
                 mySqlCmd.ExecuteNonQuery();
                 DataTable dt = new DataTable();
                 MySqlDataAdapter mySqlDA = new MySqlDataAdapter(mySqlCmd);
