@@ -93,7 +93,7 @@ namespace MAS_Sustainability.Controllers
             
             DataTable UserDataDatatable1 = new DataTable();
             DataTable ReportDataTable1 = new DataTable();
-
+            DataTable RepairDetailsDatatable = new DataTable();
             DB dbConn = new DB();
 
             using (MySqlConnection mySqlCon = dbConn.DBConnection())
@@ -101,15 +101,21 @@ namespace MAS_Sustainability.Controllers
                 mySqlCon.Open();
                 String listOfReports1 = "select tokens.Tokenid,tokens.tokenauditid,problemname,location,attentionlevel,description,token_audit.tokenauditid,addeduser,category,addeddate,tokenimageid,token_image.tokenid,imagepath from tokens, token_audit, token_image where tokens.tokenAuditID = token_audit.tokenauditId and tokens.TokenID = '" + (int)Id + "' and token_image.tokenid=tokens.tokenauditid";
                 String UserDetails1 = "SELECT UserName,UserType,userid,UserImage FROM users WHERE UserEmail = '" + Session["user"] + "'";
+                String RepairList = "Select repairID, tokenid,userid,reviewid,recieveddate,deadline,amount from repinfo where tokenid=" + (int)Id;
                 MySqlDataAdapter mySqlDa2 = new MySqlDataAdapter();
                 MySqlCommand UserDetailsComm1 = new MySqlCommand(UserDetails1, mySqlCon);
                 MySqlCommand listOfReportsComm1 = new MySqlCommand(listOfReports1, mySqlCon);
+                MySqlCommand RepairDetailsComm = new MySqlCommand(RepairList, mySqlCon);
+            
 
                 mySqlDa2.SelectCommand = UserDetailsComm1;
                 mySqlDa2.Fill(UserDataDatatable1);
 
                 mySqlDa2.SelectCommand = listOfReportsComm1;
                 mySqlDa2.Fill(ReportDataTable1);
+
+                mySqlDa2.SelectCommand = RepairDetailsComm;
+                mySqlDa2.Fill(RepairDetailsDatatable);
 
             }
             if (ReportDataTable1.Rows.Count == 0)

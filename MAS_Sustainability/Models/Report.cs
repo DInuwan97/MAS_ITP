@@ -47,6 +47,10 @@ namespace MAS_Sustainability.Models
         public String AddedDate { get; set; }
         public String Image1path { get; set; }
         public String Image2path { get; set; }
+        public String recievedDateRepair { get; set; }
+        public String DeadLineRepair { get; set; }
+
+        public String amountRepair { get; set; }
 
 
         public List<Report> reportList1 { get; set; }
