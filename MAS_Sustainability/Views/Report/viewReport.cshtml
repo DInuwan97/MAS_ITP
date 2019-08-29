@@ -120,7 +120,7 @@
                                                         {
                                                             <div style=" width:50%">
                                                                 <a href="javascript:document.getElementById('myForm1').submit()" style="text-decoration:none;">
-                                                                    <div class="col" style="padding-left:0px !important" >
+                                                                    <div class="col" style="padding-left:0px !important">
                                                                         <div class="demo-icon" style="padding-left:40%;padding-right:25px;border-bottom:solid; border-bottom-color:@Html.DisplayFor(m=>m.report.dislikeColor);">
                                                                             <div class="icon-preview">
                                                                                 <i class="icon-dislike">
@@ -143,65 +143,73 @@
 
 
 
-</thead>
+                                                </thead>
                                                 <tbody>
 
                                                     <div class=" card">
 
                                                         <div class="card-body">
-                                                            @using (Html.BeginForm())
+
+                                                            @using (Html.BeginForm("Comment", "Report", FormMethod.Post))
                                                             {
                                                                 @Html.AntiForgeryToken()
                                                                 <div>
-                                                                    <div class="form-group">
-                                                                        <label>Problem Name</label>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control" id="ProblemName" name="ProblemName">
-
+                                                                    <div class="col">
+                                                                        <div class="form-group">
+                                                                            <label>Add a Comment</label>
+                                                                            <div class="input-group">
+                                                                                <input type="text" class="form-control" id="Comment" name="Comment" required>
+                                                                                @Html.Hidden("UserID", Html.DisplayFor(m => m.LoggedUserID))
+                                                                                @Html.Hidden("tokenID", Html.DisplayFor(m => m.report.tokenID))
+                                                                            </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="col">
+                                                                        <center>
+                                                                            <input type="submit" value="Submit" class="btn btn-info" />
+                                                                        </center>
+                                                                    </div>
+                                                                    
                                                                 </div>
+
 
                                                             }
-                                                        </div>
-                                                    </div>
+                                                                @foreach (var item in Model.report.commentList)
+                                                                {
+                                                                    <tr>
+                                                                        <td style="padding-right:0px !important; padding-left:0px !important;">
+                                                                            <div class="card">
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <td style="padding-right:0px !important; padding-left:10px !important">
+                                                                                            <div class="avatar avatar-sm">
+                                                                                                <img src=@Html.DisplayFor(m=>item.userImagePath) class="avatar-img rounded-circle" />
+                                                                                            </div>
+                                                                                        </td>
+                                                                                        <td>@Html.DisplayFor(m => item.userName)</td>
+                                                                                    </tr>
+                                                                                    <tr>
 
-                                                    @foreach (var item in Model.report.commentList)
-                                                    {
-                                                        <tr>
-                                                            <td style="padding-right:0px !important; padding-left:0px !important;">
-                                                                <div class="card">
-                                                                    <table>
-                                                                        <tr>
-                                                                            <td style="padding-right:0px !important; padding-left:10px !important">
-                                                                                <div class="avatar avatar-sm">
-                                                                                    <img src=@Html.DisplayFor(m=>item.userImagePath) class="avatar-img rounded-circle" />
-                                                                                </div>
-                                                                            </td>
-                                                                            <td>@Html.DisplayFor(m => item.userName)</td>
-                                                                        </tr>
-                                                                        <tr>
-
-                                                                            <td colspan="2" style="border-bottom-color:transparent !important">@Html.DisplayFor(m => item.comment)</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td colspan="2" style="text-align:end;height:10px !important;color:lightgray;border-top-color:transparent !important;">@Html.DisplayFor(m => item.dateTime)</td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
+                                                                                        <td colspan="2" style="border-bottom-color:transparent !important">@Html.DisplayFor(m => item.comment)</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td colspan="2" style="text-align:end;height:10px !important;color:lightgray;border-top-color:transparent !important;">@Html.DisplayFor(m => item.dateTime)</td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
 
 
-                                                    }
+                                                                }
 
 
 
 
-                                                </tbody>
+                                                    </tbody>
 
 
-                                            </table>
+                                                </table>
                                         </div>
                                         </div>
 
