@@ -195,6 +195,7 @@ namespace MAS_Sustainability.Controllers
                             feedbackID = Convert.ToInt32(commentsDatatable.Rows[i][2]),
                             userID = Convert.ToInt32(commentsDatatable.Rows[i][4]),
                             userName = commentsDatatable.Rows[i][8].ToString(),
+                            UserEmail = Session["user"].ToString(),
                             
                             userImagePath = commentsDatatable.Rows[i][10].ToString(),
                             tokenID = Convert.ToInt32(commentsDatatable.Rows[i][5]),

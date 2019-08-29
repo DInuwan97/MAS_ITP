@@ -13,6 +13,7 @@ namespace MAS_Sustainability.Models
         public int feedbackID { get; set; }
         public int userID { get; set; }
         public String userName { get; set; }
+        public String UserEmail { get; set; }
         public int userImageUserId { get; set; }
         public int userImageId { get; set; }
         public String userImagePath { get; set; }

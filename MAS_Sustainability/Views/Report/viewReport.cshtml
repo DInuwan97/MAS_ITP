@@ -205,13 +205,28 @@
                                                                                             </div>
                                                                                         </td>
                                                                                         <td>@Html.DisplayFor(m => item.userName)</td>
+                                                                                        @if (Equals(Session["user"].ToString(), Html.DisplayFor(m => m.report.UserEmail)))
+                                                                                        {
+                                                                                            <td style="padding-left:4px !important;padding-right:0px!important;background-color:red">
+                                                                                                <div>
+                                                                                                    <i class="icon-close"></i>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            <td >
+                                                                                                
+                                                                                            </td>
+
+                                                                                        }
                                                                                     </tr>
                                                                                     <tr>
 
-                                                                                        <td colspan="2" style="border-bottom-color:transparent !important">@Html.DisplayFor(m => item.comment)</td>
+                                                                                        <td colspan="3" style="border-bottom-color:transparent !important">@Html.DisplayFor(m => item.comment)</td>
                                                                                     </tr>
                                                                                     <tr>
-                                                                                        <td colspan="2" style="text-align:end;height:10px !important;color:lightgray;border-top-color:transparent !important;">@Html.DisplayFor(m => item.dateTime)</td>
+                                                                                        <td colspan="3"  style="text-align:end;height:10px !important;color:lightgray;border-top-color:transparent !important;">@Html.DisplayFor(m => item.dateTime)</td>
                                                                                     </tr>
                                                                                 </table>
                                                                             </div>
