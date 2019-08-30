@@ -196,7 +196,7 @@ namespace MAS_Sustainability.Controllers
                             userID = Convert.ToInt32(commentsDatatable.Rows[i][4]),
                             userName = commentsDatatable.Rows[i][8].ToString(),
                             UserEmail = commentsDatatable.Rows[i][11].ToString(),
-
+                            commentID = Convert.ToInt32(commentsDatatable.Rows[i][0]),
 
                             userImagePath = commentsDatatable.Rows[i][10].ToString(),
                             tokenID = Convert.ToInt32(commentsDatatable.Rows[i][5]),
@@ -396,6 +396,37 @@ namespace MAS_Sustainability.Controllers
 
             }
             return RedirectToAction("viewReport", "Report", new { id = tokenID });
+
+        }
+        
+        public ActionResult Delete(int? TID, int?UID, int? CID)
+        {
+            DB connection = new DB();
+            DataTable feedbackIDDAtatable = new DataTable();
+            using (MySqlConnection mySqlCon = connection.DBConnection())
+            {
+                mySqlCon.Open();
+                String getFeedbackID = "Select feedbackID from feedback where userid = " + UID + " and tokenid = " + TID;
+                MySqlCommand commGetFeedbackID = new MySqlCommand(getFeedbackID, mySqlCon);
+                MySqlDataAdapter mySqlDa = new MySqlDataAdapter();
+                mySqlDa.SelectCommand = commGetFeedbackID;
+                mySqlDa.Fill(feedbackIDDAtatable);
+                if (feedbackIDDAtatable.Rows.Count != 0)
+                {
+                    var feedbackID = Convert.ToInt32(feedbackIDDAtatable.Rows[0][0]);
+                    String deleteComment = "Delete from comment where feedbackid = " + feedbackID +" and commentid = "+CID;
+                    MySqlCommand commDeleteCommand = new MySqlCommand(deleteComment, mySqlCon);
+                    commDeleteCommand.ExecuteNonQuery();
+                }
+                
+
+            }
+
+                
+
+
+
+            return RedirectToAction("viewReport", "Report", new { id = TID });
 
         }
 

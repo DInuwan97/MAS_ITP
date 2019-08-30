@@ -11,8 +11,8 @@ namespace MAS_Sustainability
         //public UserLogin userLoginViewModel { get; set; }
         // public Token tokenViewModel { get; set; }
 
-        public List<Survey> SurveyList { get; set; }
-        public Survey survey { get; set; }
+      //  public List<Survey> SurveyList { get; set; }
+    //    public Survey survey { get; set; }
 
 
         public List<Token> ListToken { get; set; }
