@@ -1,0 +1,48 @@
+﻿@model MAS_Sustainability.Models.AddRepairToken
+
+@{
+    ViewBag.Title = "Delete Token";
+}
+
+<h1><b>Delete Token</b></h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AddRepairToken</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecievedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecievedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deadline)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

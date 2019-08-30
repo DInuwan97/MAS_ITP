@@ -1,0 +1,66 @@
+﻿@model IEnumerable<MAS_Sustainability.Models.AddRepairToken>
+
+@{
+    ViewBag.Title = "Repairing Section";
+}
+
+<h1><b>Repairing Section</b></h1>
+
+<button>
+    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "mybtn" })
+</button>
+
+</style>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RecievedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecievedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deadline)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RepairId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.RepairId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RepairId })
+            </td>
+        </tr>
+    }
+
+</table>
+@section scripts{
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="~/Content/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="~/Content/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script src="~/Content/assets/js/core/popper.min.js"></script>
+    <script src="~/Content/assets/js/core/bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/plugin/chart.js/chart.min.js"></script>
+    <script src="~/Content/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="~/Content/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+    <script src="~/Content/assets/js/plugin/chart-circle/circles.min.js"></script>
+    <script src="~/Content/"></script>
+    <script src="~/Content/assets/js/plugin/datatables/datatables.min.js"></script>
+    <script src="~/Content/assets/js/atlantis.min.js"></script>
+    <script src="Content/assets/prism.js"></script>
+    <script src="Content/assets/prism-normalize-whitespace.min.js"></script>
+    <script type="text/javascript"></script>
+}

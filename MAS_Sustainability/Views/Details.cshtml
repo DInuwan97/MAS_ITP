@@ -1,0 +1,42 @@
+﻿@model MAS_Sustainability.Models.AddRepairToken
+
+@{
+    ViewBag.Title = "View Details";
+}
+
+<h1><b></b>Token Details</b></h1>
+
+<div>
+    <h4>AddRepairToken</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecievedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecievedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deadline)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RepairId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
