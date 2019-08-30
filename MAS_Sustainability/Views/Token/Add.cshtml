@@ -9,41 +9,36 @@
     ViewBag.Title = "Add";
 }
 
-
-
-
 <div class="main-panel">
     <div class="content">
         <div class="page-inner">
             <div class="page-header">
-                <h4 class="page-title">Lists</h4>
-                <ul class="breadcrumbs">
-                    <li class="nav-home">
-                        <a href="#">
-                            <i class="flaticon-home"></i>
-                        </a>
-                    </li>
-                    <li class="separator">
-                        <i class="flaticon-right-arrow"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Base</a>
-                    </li>
-                    <li class="separator">
-                        <i class="flaticon-right-arrow"></i>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Lists</a>
-                    </li>
-                </ul>
+                <h4 class="page-title">Add New Problem</h4>
+                @*<ul class="breadcrumbs">
+                        <li class="nav-home">
+                            <a href="#">
+                                <i class="flaticon-home"></i>
+                            </a>
+                        </li>
+                        <li class="separator">
+                            <i class="flaticon-right-arrow"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Base</a>
+                        </li>
+                        <li class="separator">
+                            <i class="flaticon-right-arrow"></i>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#">Lists</a>
+                        </li>
+                    </ul>*@
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Capture the Problem</h4>
-
-
 
                             @using (Html.BeginForm("Add", "Token", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
@@ -57,7 +52,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="input-file input-file-image">
-                                                <img class="img-upload-preview img-circle" width="100" height="100" src="https://placehold.it/100x100" alt="preview">
+                                                <img class="img-upload-preview img-circle" width="150" height="150" src="https://placehold.it/150x150" alt="preview">
                                                 <input type="file" class="form-control form-control-file" id="ImageFile1" name="FirstImageFile" accept="image/*" required="">
                                                 <label for="ImageFile1" class="badge badge-primary">
                                                     <span class="btn-label">
@@ -68,12 +63,9 @@
                                             </div>
                                         </div>
 
-
-
-
                                         <div class="col-md-3">
                                             <div class="input-file input-file-image">
-                                                <img class="img-upload-preview img-circle" width="100" height="100" src="https://placehold.it/100x100" alt="preview">
+                                                <img class="img-upload-preview img-circle" width="150" height="150" src="https://placehold.it/150x150" alt="preview">
                                                 <input type="file" class="form-control form-control-file" id="ImageFile2" name="SecondImageFile" accept="image/*">
                                                 <label for="ImageFile2" class="badge badge-primary">
                                                     <span class="btn-label">
@@ -83,16 +75,8 @@
                                                 </label>
                                             </div>
                                         </div>
-
-
-
-
                                     </div>
                                 </div>
-
-
-
-
 
                                 <div class="row">
                                     <div class="col-md-12">
@@ -102,78 +86,73 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+
+                                                    <div class="col-md-6">
+
                                                         <div class="form-group">
                                                             <label>Problem Name</label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control" id="ProblemName" name="ProblemName">
-
                                                             </div>
                                                         </div>
-                                                    </div>
 
 
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>Attention Level</label>
-                                                            <div class="input-group">
-                                                                <input type="number" class="form-control" id="AttentionLevel" name="AttentionLevel">
-                                                            </div>
-                                                        </div>
-                                                    </div>
 
-
-                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Problem Category</label>
                                                             <div class="input-group">
-
                                                                 <select id="basic" name="ProblemCategory" class="form-control">
                                                                     <option value="">&nbsp;</option>
-                                                                    <optgroup label="Alaskan/Hawaiian Time Zone">
-                                                                        <option value="Sustainability">Sustainability</option>
-                                                                        <option value="Safety">Safety</option>
-                                                                    </optgroup>
+                                                                    <option value="Sustainability">Sustainability</option>
+                                                                    <option value="Safety">Safety</option>
                                                                 </select>
-
                                                             </div>
                                                         </div>
-                                                    </div>
 
 
-                                                    <div class="col-md-4">
+
                                                         <div class="form-group">
                                                             <label>Location</label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control" id="Location" name="Location">
+
                                                             </div>
                                                         </div>
                                                     </div>
 
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="comment">Problem in Brief</label>
+                                                            <textarea class="form-control" id="comment" rows="10" name="Description"> </textarea>
+                                                        </div>
+                                                    </div>
 
+                                                    @*<div class="col-sm-6">
+                                                        <div class="form-group">
+                                                          <label>Attention Level</label>
+                                                             <div class="input-group">
+                                                              <input type="number" class="form-control" id="AttentionLevel" name="AttentionLevel">
+                                                             </div>
+                                                            </div>
+                                                        </div>*@
 
+                                                    <div class="col-sm-3"></div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Attention Level</label>
+                                                            <input class="slider form-control-static" type="range" min="0" max="100"
+                                                                   id="AttentionLevel" name="AttentionLevel" oninput="displayValue(event)"
+                                                                   required />
+                                                            <center><span id="val"></span></center>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <br />
+                                                    <br />
                                                 </div>
-
-
-
-                                                <div class="form-group">
-                                                    <label for="comment">Problem in Brief</label>
-                                                    <textarea class="form-control" id="comment" rows="5" name="Description">
-
-										                </textarea>
-                                                </div>
-
                                                 <center>
-
-                                                    <input type="submit" value="ADD TOKEN" class="btn btn-info" />
+                                                    <input type="submit" value="Add Token" class="btn btn-info col-sm-4" />
                                                 </center>
-
-
-
-
-
-
-
 
                                             </div>
                                         </div>
@@ -353,4 +332,88 @@
                                     lineColor: '#ffa534',
                                     fillColor: 'rgba(255, 165, 52, .14)'
                                 });
+                            </script>
+
+                            <!-------Slider Styles--------------------------------------------------------->
+                            <style>
+                                input[type=range] {
+                                    width: 100%;
+                                    -webkit-appearance: none;
+                                    margin: 0;
+                                }
+
+                                    input[type=range]:focus {
+                                        outline: none;
+                                    }
+
+                                    input[type=range]::-webkit-slider-runnable-track {
+                                        width: 100%;
+                                        height: 19px;
+                                        cursor: pointer;
+                                        box-shadow: 0 4px 4px rgba(0,0,0,0.3) inset;
+                                        background: linear-gradient(to right, #005fc2, #35A834 40%, #ffd400 65%, #FF6400);
+                                        opacity: 50;
+                                        border-radius: 0;
+                                        border: none;
+                                    }
+
+                                    input[type=range]::-webkit-slider-thumb {
+                                        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+                                        border: 1px solid white;
+                                        height: 20px;
+                                        width: 20px;
+                                        border-radius: 20px;
+                                        background: white;
+                                        cursor: pointer;
+                                        -webkit-appearance: none;
+                                        margin-top: -1px;
+                                    }
+
+                                #slide:before {
+                                    content: attr(min);
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 0;
+                                    color: black;
+                                    font-size: 1rem;
+                                }
+
+                                #slide:after {
+                                    content: attr(max);
+                                    position: absolute;
+                                    bottom: 0;
+                                    right: 0;
+                                    color: black;
+                                    font-size: 1rem;
+                                }
+
+                                #val {
+                                    font-size: 1.6rem;
+                                    position: center;
+                                    left: 0;
+                                    bottom: 40px;
+                                    width: 100px;
+                                }
+                            </style>
+
+                            <script>
+                                const min = document.querySelector('#min');
+                                const max = document.querySelector('#max');
+                                const span = document.querySelector('#val');
+                                const slide = document.querySelector('#slide');
+
+                                displayValue.call(slide, {});
+
+                                function displayValue(e) {
+                                    const inp = e.target || this;
+                                    const value = +inp.value;
+                                    const min = inp.min;
+                                    const max = inp.max;
+                                    const width = inp.offsetWidth;
+                                    const offset = -20;
+                                    const percent = (value - min) / (max - min);
+                                    const pos = percent * (width + offset) - 40;
+                                    span.style.left = `${pos}px`;
+                                    span.innerHTML = value + "%";
+                                }
                             </script>
