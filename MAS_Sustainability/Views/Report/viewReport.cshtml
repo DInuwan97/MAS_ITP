@@ -169,8 +169,7 @@
                                                                             <label>Add a Comment</label>
                                                                             <div class="input-group">
                                                                                 <input type="text" class="form-control" id="Comment" name="Comment" required>
-                                                                                @Html.Hidden("UserID", Html.DisplayFor(m => m.LoggedUserID))
-                                                                                @Html.Hidden("tokenID", Html.DisplayFor(m => m.report.tokenID))
+                                                                             
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -419,7 +418,8 @@
                     type: 'POST',
                     context: this,
                     success: function (result) {
-                        $("#commentRow").load(location.href + " #commentRow>*", "");
+                        //$("#commentRow").load(location.href + " #commentRow>*", "");
+                        location.reload();
                     }
                 });
             }
@@ -431,7 +431,7 @@
                     url: this.href,
                     type: 'POST',
                     context: this,
-                    success: function (result) {
+                    success: function (result1) {
                         $("#LikeDisLike").load(location.href + " #LikeDisLike>*", "");
                     }
                 });
@@ -447,14 +447,14 @@
                 url: this.href,
                 type: 'POST',
                 context: this,
-                success: function (result) {
+                success: function (result2) {
                     $("#LikeDisLike").load(location.href + " #LikeDisLike>*", "");
                 }
             });
 
             return false;
         })
-            //(int ? UserID, int ? tokenID, String Comment)
+            
         $('#commentSubmit').click(function () {
             event.preventDefault();
             var comment = document.getElementById("Comment").value;
@@ -464,8 +464,11 @@
                     url: '@Url.Action("Comment", "Report")',
                     context: this,
                     data: 'UserID=@Html.DisplayFor(m=>m.LoggedUserID)&tokenID=@Html.DisplayFor(m => m.report.tokenID)&Comment=' + comment,
-                    success: function (result) {
-                        $("#commentRow").load(location.href + " #commentRow>*", "");
+                    success: function (result3) {
+                        
+                        //$("#commentRow").load(location.href + " #commentRow>*", "");
+                        //$('#feedbackTable').DataTable().ajax.reload();
+                        location.reload();
                     },
 
                 });

@@ -88,7 +88,12 @@ namespace MAS_Sustainability.Controllers
 
         public ActionResult viewReport(int? Id)
         {
-            
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Login", "UserLogin");
+            }
+
+
             if (!Id.HasValue)
             {
                 return RedirectToAction("Index", "Report");
@@ -351,6 +356,7 @@ namespace MAS_Sustainability.Controllers
                     mySqlComm.ExecuteNonQuery();
                 }
             }
+
 
             return RedirectToAction("viewReport", "Report", new { id = TID });
         }
