@@ -276,80 +276,80 @@ namespace MAS_Sustainability.Controllers
 
 
 
-        [HttpPost]
-        public ActionResult Like(int? tokenID, int? UserID, int? LikeStatus)
+        
+        public ActionResult Like(int? TID, int? UID, int? LS)
         {
             DB dbconnection = new DB();
 
             using (MySqlConnection mySqlCon = dbconnection.DBConnection())
             {
                 mySqlCon.Open();
-                if (LikeStatus == 2)
+                if (LS == 2)
                 {
-                    String Like = "Update feedback set rating = '1' where userid='" + UserID + "' and tokenid = '" + tokenID + "'";
+                    String Like = "Update feedback set rating = '1' where userid='" + UID + "' and tokenid = '" + TID + "'";
                     MySqlCommand mySqlComm = new MySqlCommand(Like, mySqlCon);
                     mySqlComm.ExecuteNonQuery();
                 }
-                else if (LikeStatus == 0)
+                else if (LS == 0)
                 {
-                    String Like = "Update feedback set rating = '1' where userid='" + UserID + "' and tokenid = '" + tokenID + "'";
+                    String Like = "Update feedback set rating = '1' where userid='" + UID + "' and tokenid = '" + TID + "'";
                     MySqlCommand mySqlComm = new MySqlCommand(Like, mySqlCon);
                     int rowAffected = mySqlComm.ExecuteNonQuery();
                     if (rowAffected == 0)
                     {
-                        String LikeUpdate = "Insert into feedback(userid,tokenid,rating) values(" + UserID + "," + tokenID + ",1)";
+                        String LikeUpdate = "Insert into feedback(userid,tokenid,rating) values(" + UID + "," + TID + ",1)";
                         MySqlCommand mySqlComm2 = new MySqlCommand(LikeUpdate, mySqlCon);
                         mySqlComm2.ExecuteNonQuery();
                     }
                 }
-                else if (LikeStatus == 1)
+                else if (LS == 1)
                 {
-                    String Like = "Update feedback set rating = '0' where userid='" + UserID + "' and tokenid = '" + tokenID + "'";
+                    String Like = "Update feedback set rating = '0' where userid='" + UID + "' and tokenid = '" + TID + "'";
                     MySqlCommand mySqlComm = new MySqlCommand(Like, mySqlCon);
                     mySqlComm.ExecuteNonQuery();
                 }
             }
 
-            return RedirectToAction("viewReport", "Report", new { id = tokenID });
+            return RedirectToAction("viewReport", "Report", new { id = TID });
         }
 
 
 
-        [HttpPost]
-        public ActionResult DisLike(int? tokenID, int? UserID, int? LikeStatus)
+        
+        public ActionResult DisLike(int? TID, int? UID, int? LS)
         {
             DB dbconnection = new DB();
 
             using (MySqlConnection mySqlCon = dbconnection.DBConnection())
             {
                 mySqlCon.Open();
-                if (LikeStatus == 1)
+                if (LS == 1)
                 {
-                    String Like = "Update feedback set rating = '2' where userid='" + UserID + "' and tokenid = '" + tokenID + "'";
+                    String Like = "Update feedback set rating = '2' where userid='" + UID + "' and tokenid = '" + TID + "'";
                     MySqlCommand mySqlComm = new MySqlCommand(Like, mySqlCon);
                     mySqlComm.ExecuteNonQuery();
                 }
-                else if (LikeStatus == 0)
+                else if (LS == 0)
                 {
-                    String Like = "Update feedback set rating = '2' where userid='" + UserID + "' and tokenid = '" + tokenID + "'";
+                    String Like = "Update feedback set rating = '2' where userid='" + UID + "' and tokenid = '" + TID + "'";
                     MySqlCommand mySqlComm = new MySqlCommand(Like, mySqlCon);
                     int rowAffected = mySqlComm.ExecuteNonQuery();
                     if (rowAffected == 0)
                     {
-                        String LikeUpdate = "Insert into feedback(userid,tokenid,rating) values(" + UserID + "," + tokenID + ",2)";
+                        String LikeUpdate = "Insert into feedback(userid,tokenid,rating) values(" + UID + "," + TID + ",2)";
                         MySqlCommand mySqlComm2 = new MySqlCommand(LikeUpdate, mySqlCon);
                         mySqlComm2.ExecuteNonQuery();
                     }
                 }
-                else if (LikeStatus == 2)
+                else if (LS == 2)
                 {
-                    String Like = "Update feedback set rating = '0' where userid='" + UserID + "' and tokenid = '" + tokenID + "'";
+                    String Like = "Update feedback set rating = '0' where userid='" + UID + "' and tokenid = '" + TID + "'";
                     MySqlCommand mySqlComm = new MySqlCommand(Like, mySqlCon);
                     mySqlComm.ExecuteNonQuery();
                 }
             }
 
-            return RedirectToAction("viewReport", "Report", new { id = tokenID });
+            return RedirectToAction("viewReport", "Report", new { id = TID });
         }
 
         [HttpPost]
