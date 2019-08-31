@@ -19,7 +19,10 @@ namespace MAS_Sustainability.Controllers
         // GET: Report
         public ActionResult Index()
         {
-            
+            if(Session["user"] == null)
+            {
+                return RedirectToAction("Login", "UserLogin");
+            }
 
 
 
@@ -352,7 +355,7 @@ namespace MAS_Sustainability.Controllers
             return RedirectToAction("viewReport", "Report", new { id = TID });
         }
 
-        [HttpPost]
+        
         public ActionResult Comment(int? UserID, int? tokenID, String Comment)
         {
             DB connection = new DB();
